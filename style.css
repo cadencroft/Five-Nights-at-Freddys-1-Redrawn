@@ -34,6 +34,30 @@ body {
 }
 
 #right-light-button{
-    left:1218px;
-    top:369px;
+    left: 1218px;
+    top: 369px;
+}
+
+#left-doorway{
+    left: 79px;
+    top: 151px;
+    opacity: 0;
+}
+
+#right-doorway{
+    left: 1082px;
+    top: 153px;
+    opacity: 0;
+}
+
+#left-window{
+    left: 202px;
+    top: 241px;
+    opacity: 0;
+}
+
+#right-window{
+    left: 1019px;
+    top: 240px;
+    opacity: 0;
 }

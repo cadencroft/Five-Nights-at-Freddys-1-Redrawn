@@ -19,10 +19,16 @@ leftLightButton.addEventListener("click", function(){
     if(leftLightButtonState == "off"){
         leftLightButton.src = "images/left-light-button-on.png";
         leftLightButtonState = "on";
+
+        document.getElementById("left-doorway").style.opacity = "1";
+        document.getElementById("left-window").style.opacity = "1";
     }
     else{
         leftLightButton.src = "images/left-light-button-off.png";
         leftLightButtonState = "off";
+
+        document.getElementById("left-doorway").style.opacity = "0";
+        document.getElementById("left-window").style.opacity = "0";
     }
 });
 
@@ -47,9 +53,15 @@ rightLightButton.addEventListener("click", function(){
     if(rightLightButtonState == "off"){
         rightLightButton.src = "images/right-light-button-on.png";
         rightLightButtonState = "on"; 
+
+        document.getElementById("right-doorway").style.opacity = 1;
+        document.getElementById("right-window").style.opacity = 1;
     }
     else{
         rightLightButton.src = "images/right-light-button-off.png";
         rightLightButtonState = "off";
+
+        document.getElementById("right-doorway").style.opacity = 0;
+        document.getElementById("right-window").style.opacity = 0;
     }
 });
