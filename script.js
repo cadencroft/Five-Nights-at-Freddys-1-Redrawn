@@ -5,10 +5,16 @@ leftDoorButton.addEventListener("click", function () {
     if (leftDoorButtonState == "off") {
         leftDoorButton.src = "images/left-door-button-on.png";
         leftDoorButtonState = "on";
+
+        // document.getElementById("left-door").style.opacity = 1;
+        document.getElementById("left-door").style.top = "158px";
     }
     else {
         leftDoorButton.src = "images/left-door-button-off.png";
         leftDoorButtonState = "off";
+
+        // document.getElementById("left-door").style.opacity = 0;
+        document.getElementById("left-door").style.top = "-354px";
     }
 });
 
@@ -20,15 +26,15 @@ leftLightButton.addEventListener("click", function(){
         leftLightButton.src = "images/left-light-button-on.png";
         leftLightButtonState = "on";
 
-        document.getElementById("left-doorway").style.opacity = "1";
-        document.getElementById("left-window").style.opacity = "1";
+        document.getElementById("left-doorway").style.opacity = 1;
+        document.getElementById("left-window").style.opacity = 1;
     }
     else{
         leftLightButton.src = "images/left-light-button-off.png";
         leftLightButtonState = "off";
 
-        document.getElementById("left-doorway").style.opacity = "0";
-        document.getElementById("left-window").style.opacity = "0";
+        document.getElementById("left-doorway").style.opacity = 0;
+        document.getElementById("left-window").style.opacity = 0;
     }
 });
 
@@ -39,10 +45,16 @@ rightDoorButton.addEventListener("click", function(){
     if (rightDoorButtonState == "off"){
         rightDoorButton.src = "images/right-door-button-on.png";
         rightDoorButtonState = "on";
+
+        // document.getElementById("right-door").style.opacity = 1;
+        document.getElementById("right-door").style.top = "158px";
     }
     else{
         rightDoorButton.src = "images/right-door-button-off.png";
         rightDoorButtonState = "off";
+
+        // document.getElementById("right-door").style.opacity = 0;
+        document.getElementById("right-door").style.top = "-354px";
     }
 });
 
