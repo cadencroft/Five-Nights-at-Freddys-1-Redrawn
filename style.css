@@ -17,3 +17,23 @@ body {
 #game img{
     position: absolute;
 }
+
+#left-door-button{
+    left:35px;
+    top: 327px;
+}
+
+#left-light-button{
+    left:35px;
+    top:369px;
+}
+
+#right-door-button{
+    left: 1218px;
+    top: 327px;
+}
+
+#right-light-button{
+    left:1218px;
+    top:369px;
+}
