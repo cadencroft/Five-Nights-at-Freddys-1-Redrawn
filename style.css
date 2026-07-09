@@ -10,4 +10,10 @@ body {
 #game{
     width: 1280px;
     height: 720px;
+
+    position: relative;
+}
+
+#game img{
+    position: absolute;
 }
