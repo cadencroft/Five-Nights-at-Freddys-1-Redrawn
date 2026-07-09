@@ -68,7 +68,8 @@ body {
 }
 
 #right-door-overlay{
-    right:0;
+    left: 1075px;
+    
 }
 
 #left-window{
