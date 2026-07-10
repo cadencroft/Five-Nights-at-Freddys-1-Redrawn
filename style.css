@@ -7,7 +7,7 @@ body {
     background-color: rgb(0, 0, 0);
 }
 
-#game{
+#game {
     width: 1280px;
     height: 720px;
 
@@ -15,71 +15,91 @@ body {
     overflow: hidden;
 }
 
-#game img{
+#game img {
     position: absolute;
     user-select: none;
     -webkit-user-drag: none;
 }
 
-#left-door-button{
-    left:35px;
+#left-door-button {
+    left: 35px;
     top: 327px;
 }
 
-#left-light-button{
-    left:35px;
-    top:369px;
+#left-light-button {
+    left: 35px;
+    top: 369px;
 }
 
-#right-door-button{
+#right-door-button {
     left: 1218px;
     top: 327px;
 }
 
-#right-light-button{
+#right-light-button {
     left: 1218px;
     top: 369px;
 }
 
-#left-doorway{
+#left-doorway-light {
     left: 79px;
     top: 151px;
     opacity: 0;
 }
 
-#right-doorway{
+#left-doorway-bonnie {
+    left: 80px;
+    top: 151px;
+    opacity: 0;
+}
+
+#right-doorway-light {
     left: 1082px;
     top: 153px;
     opacity: 0;
 }
 
-#left-door{
+#left-door {
     left: 84px;
-    top: -354px; /*158 door closed*/
+    top: -354px;
+    /*158 door closed*/
 
     transition: top 0.7s;
 }
 
-#right-door{
+#right-door {
     left: 1087px;
-    top: -354px; /* 158 door closed */
+    top: -354px;
+    /* 158 door closed */
 
     transition: top 0.7s;
 }
 
-#right-door-overlay{
+#right-door-overlay {
     left: 1075px;
-    
+
 }
 
-#left-window{
+#left-window-light {
     left: 202px;
     top: 241px;
     opacity: 0;
 }
 
-#right-window{
+#left-window-bonnie {
+    left: 202px;
+    top: 241px;
+    opacity: 0;
+}
+
+#right-window-light {
     left: 1019px;
+    top: 240px;
+    opacity: 0;
+}
+
+#right-window-chica {
+    left: 1020px;
     top: 240px;
     opacity: 0;
 }
