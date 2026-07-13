@@ -1,3 +1,6 @@
+
+/* General */
+
 body {
     margin: 0;
     display: flex;
@@ -20,6 +23,8 @@ body {
     user-select: none;
     -webkit-user-drag: none;
 }
+
+/* Door and Light Buttons */
 
 #left-door-button {
     left: 35px;
@@ -102,4 +107,22 @@ body {
     left: 1020px;
     top: 240px;
     opacity: 0;
+}
+
+
+/* Monitor and Cameras  */
+
+#monitor-button{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top:650px;
+
+    z-index: 10;
+}
+
+#monitor{
+    pointer-events: none;
+
+    z-index: 20;
 }

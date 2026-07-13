@@ -126,3 +126,68 @@ rightLightButton.addEventListener("click", function () {
         document.getElementById("right-window-chica").style.opacity = 0;    //REMOVE LATER
     }
 });
+
+
+const monitorButton = document.getElementById("monitor-button");
+const monitor = document.getElementById("monitor");
+let monitorStatus = "down";
+
+monitorButton.addEventListener("mouseenter", function (){
+    
+    const monitorFrames = [
+        "images/monitor/monitor-frame0.png",
+        "images/monitor/monitor-frame1.png",
+        "images/monitor/monitor-frame2.png",
+        "images/monitor/monitor-frame3.png",
+        "images/monitor/monitor-frame4.png",
+        "images/monitor/monitor-frame5.png",
+        "images/monitor/monitor-frame6.png",
+        "images/monitor/monitor-frame7.png",
+        "images/monitor/monitor-frame8.png",
+        "images/monitor/monitor-frame9.png"
+    ];
+
+    // Monitor up sequence
+    if(monitorStatus == "down"){
+        monitor.style.pointerEvents = "all";
+        let monitorFrame = 1;
+
+        let monitorSequence = setInterval(function(){
+            monitor.src = monitorFrames[monitorFrame];
+
+            monitorFrame++;
+
+            if(monitorFrame > 9){
+                clearInterval(monitorSequence);
+                monitorStatus = "up";
+                monitorButton.style.zIndex = 30;
+            }
+
+        }, 40);
+        
+    }
+
+    // Monitor down sequence
+    else{
+
+        let monitorFrame = 8;
+        monitorButton.style.zIndex = 10;
+
+        let monitorSequence = setInterval(function(){
+            monitor.src = monitorFrames[monitorFrame]
+
+            monitorFrame--;
+
+            if(monitorFrame < 0){
+                clearInterval(monitorSequence);
+                monitorStatus = "down";
+                monitor.style.pointerEvents = "none";
+            }
+
+
+        }, 40);
+
+        
+    }
+
+});
