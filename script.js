@@ -163,7 +163,7 @@ monitorButton.addEventListener("mouseenter", function (){
                 monitorButton.style.zIndex = 30;
             }
 
-        }, 40);
+        }, 1000);
         
     }
 
@@ -185,7 +185,7 @@ monitorButton.addEventListener("mouseenter", function (){
             }
 
 
-        }, 40);
+        }, 1000);
 
         
     }
