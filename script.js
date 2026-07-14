@@ -1,140 +1,29 @@
-//Test Bonnie and Chica appearances. This will be removed later
-let testBonnieAppearance = "off";
-let testChicaAppearance = "off";
+// ====================================================================================
+// ASSET LOADING
+// ====================================================================================
 
-document.addEventListener("keydown", function (event) {
-    if (event.key.toLowerCase() == "b") {
-        if (testBonnieAppearance == "off") {
-            testBonnieAppearance = "on";
-        }
-        else {
-            testBonnieAppearance = "off";
-        }
-        console.log("Bonnie: ", testBonnieAppearance);
-    }
-    else if (event.key.toLowerCase() == "c") {
-        if (testChicaAppearance == "off") {
-            testChicaAppearance = "on";
-        }
-        else {
-            testChicaAppearance = "off";
-        }
-        console.log("Chica: ", testChicaAppearance);
-    }
-});
+const assets = {
+    leftDoorButton: {
+        on:     "images/left-door-button-on.png",
+        off:    "images/left-door-button-off.png"
+    },
 
+    leftLightButton: {
+        on:     "images/left-light-button-on.png",
+        off:    "images/left-light-button-off.png"
+    },
 
+    rightDoorButton: {
+        on:     "images/right-door-button-on.png",
+        off:    "images/right-door-button-off.png"
+    },
 
+    rightLightButton: {
+        on:     "images/right-light-button-on.png",
+        off:    "images/right-light-button-off.png"
+    },
 
-// Door and Light Buttons
-const leftDoorButton = document.getElementById("left-door-button");
-let leftDoorButtonState = "off";
-
-leftDoorButton.addEventListener("click", function () {
-    if (leftDoorButtonState == "off") {
-        leftDoorButton.src = "images/left-door-button-on.png";
-        leftDoorButtonState = "on";
-
-        document.getElementById("left-door").style.top = "158px";
-    }
-    else {
-        leftDoorButton.src = "images/left-door-button-off.png";
-        leftDoorButtonState = "off";
-
-        document.getElementById("left-door").style.top = "-354px";
-    }
-});
-
-const leftLightButton = document.getElementById("left-light-button");
-let leftLightButtonState = "off";
-
-leftLightButton.addEventListener("click", function () {
-    if (leftLightButtonState == "off") {
-
-        leftLightButton.src = "images/left-light-button-on.png";
-        leftLightButtonState = "on";
-
-        //This if statment is for the Bonnie test, it can be removed eventually
-        if (testBonnieAppearance == "off") {
-            document.getElementById("left-doorway-light").style.opacity = 1;
-            document.getElementById("left-window-light").style.opacity = 1;
-        }
-        else {
-            document.getElementById("left-doorway-bonnie").style.opacity = 1;   //REMOVE LATER
-            document.getElementById("left-window-bonnie").style.opacity = 1;    //REMOVE LATER
-        }
-    }
-    else {
-        leftLightButton.src = "images/left-light-button-off.png";
-        leftLightButtonState = "off";
-
-        document.getElementById("left-doorway-light").style.opacity = 0;
-        document.getElementById("left-window-light").style.opacity = 0;
-
-        //This statment is for the Bonnie test, it can be removed eventually
-        document.getElementById("left-doorway-bonnie").style.opacity = 0;   //REMOVE LATER
-        document.getElementById("left-window-bonnie").style.opacity = 0;    //REMOVE LATER
-    }
-});
-
-const rightDoorButton = document.getElementById("right-door-button");
-let rightDoorButtonState = "off";
-
-rightDoorButton.addEventListener("click", function () {
-    if (rightDoorButtonState == "off") {
-        rightDoorButton.src = "images/right-door-button-on.png";
-        rightDoorButtonState = "on";
-
-        // document.getElementById("right-door").style.opacity = 1;
-        document.getElementById("right-door").style.top = "158px";
-    }
-    else {
-        rightDoorButton.src = "images/right-door-button-off.png";
-        rightDoorButtonState = "off";
-
-        // document.getElementById("right-door").style.opacity = 0;
-        document.getElementById("right-door").style.top = "-354px";
-    }
-});
-
-const rightLightButton = document.getElementById("right-light-button");
-let rightLightButtonState = "off";
-
-rightLightButton.addEventListener("click", function () {
-    if (rightLightButtonState == "off") {
-        rightLightButton.src = "images/right-light-button-on.png";
-        rightLightButtonState = "on";
-
-        document.getElementById("right-doorway-light").style.opacity = 1;
-
-        //This if statment is for the Bonnie test, it can be removed eventually
-        if (testChicaAppearance == "off") {
-            document.getElementById("right-window-light").style.opacity = 1;
-        }
-        else {
-            document.getElementById("right-window-chica").style.opacity = 1;    //REMOVE LATER
-        }
-    }
-    else {
-        rightLightButton.src = "images/right-light-button-off.png";
-        rightLightButtonState = "off";
-
-        document.getElementById("right-doorway-light").style.opacity = 0;
-        document.getElementById("right-window-light").style.opacity = 0;
-
-        //This statment is for the Bonnie test, it can be removed eventually
-        document.getElementById("right-window-chica").style.opacity = 0;    //REMOVE LATER
-    }
-});
-
-
-const monitorButton = document.getElementById("monitor-button");
-const monitor = document.getElementById("monitor");
-let monitorStatus = "down";
-
-monitorButton.addEventListener("mouseenter", function (){
-    
-    const monitorFrames = [
+    monitorFrames: [
         "images/monitor/monitor-frame0.png",
         "images/monitor/monitor-frame1.png",
         "images/monitor/monitor-frame2.png",
@@ -145,49 +34,215 @@ monitorButton.addEventListener("mouseenter", function (){
         "images/monitor/monitor-frame7.png",
         "images/monitor/monitor-frame8.png",
         "images/monitor/monitor-frame9.png"
-    ];
+    ]
+};
 
+// ====================================================================================
+// GAME STATE VARIABLES
+// ====================================================================================
+
+const gameState = {
+
+    leftDoorState:          "open",
+    rightDoorState:         "open",
+
+    leftLightState:         "off",
+    rightLightState:        "off",
+
+    testBonnieAppearance:   "off",    //REMOVE LATER AND REPLACE WITH bonnieLocation
+    testChicaAppearance:    "off",      //REMOVE LATER AND REPLACE WITH chicaLocation
+
+    monitorStatus:          "down"
+
+
+}
+
+// ====================================================================================
+// HTML ELEMENT REFERENCES
+// ====================================================================================
+
+const elements = {
+    leftDoorButton:     document.getElementById("left-door-button"),
+    leftLightButton:    document.getElementById("left-light-button"),
+    leftDoor:           document.getElementById("left-door"),
+    leftDoorwayLight:   document.getElementById("left-doorway-light"),
+    leftWindowLight:    document.getElementById("left-window-light"),
+    leftDoorwayBonnie:  document.getElementById("left-doorway-bonnie"),
+    leftWindowBonnie:   document.getElementById("left-window-bonnie"),
+
+    rightDoorButton:    document.getElementById("right-door-button"),
+    rightLightButton:   document.getElementById("right-light-button"),
+    rightDoor:          document.getElementById("right-door"),
+    rightDoorwayLight:  document.getElementById("right-doorway-light"),
+    rightWindowLight:   document.getElementById("right-window-light"),
+    rightWindowChica:   document.getElementById("right-window-chica"),
+
+    monitorButton:      document.getElementById("monitor-button"),
+    monitor:            document.getElementById("monitor")
+    
+}
+
+// ====================================================================================
+// EVENT LISTENERS
+// ====================================================================================
+
+elements.leftDoorButton.addEventListener("click", toggleLeftDoor);
+elements.leftLightButton.addEventListener("click", toggleLeftLight);
+
+elements.rightDoorButton.addEventListener("click", toggleRightDoor);
+elements.rightLightButton.addEventListener("click", toggleRightLight);
+
+document.addEventListener("keydown", handleKeyboardInput);
+
+elements.monitorButton.addEventListener("mouseenter", toggleMonitor)
+
+// ====================================================================================
+// GAME FUNCTIONS
+// ====================================================================================
+
+function toggleLeftDoor(){
+    if (gameState.leftDoorState == "open") {
+            elements.leftDoorButton.src = assets.leftDoorButton.on;
+            gameState.leftDoorState = "closed";
+
+            elements.leftDoor.style.top = "158px";
+        }
+        else {
+            elements.leftDoorButton.src = assets.leftDoorButton.off;
+            gameState.leftDoorState = "open";
+
+            elements.leftDoor.style.top = "-354px";
+        }
+}
+
+function toggleLeftLight(){
+    if (gameState.leftLightState == "off") {
+        elements.leftLightButton.src = assets.leftLightButton.on;
+        gameState.leftLightState = "on";
+
+        //This if statment is for the Bonnie test, it can be removed eventually
+        if (gameState.testBonnieAppearance == "off") {
+            elements.leftDoorwayLight.style.opacity = 1;
+            elements.leftWindowLight.style.opacity = 1;
+        }
+        else {
+            elements.leftDoorwayBonnie.style.opacity = 1;   //REMOVE LATER
+            elements.leftWindowBonnie.style.opacity = 1;    //REMOVE LATER
+        }
+    }
+    else {
+        elements.leftLightButton.src = assets.leftLightButton.off;
+        gameState.leftLightState = "off";
+
+        elements.leftDoorwayLight.style.opacity = 0;
+        elements.leftWindowLight.style.opacity = 0;
+
+        //This statment is for the Bonnie test, it can be removed eventually
+        elements.leftDoorwayBonnie.style.opacity = 0;   //REMOVE LATER
+        elements.leftWindowBonnie.style.opacity = 0;    //REMOVE LATER
+    }
+}
+
+function toggleRightDoor(){
+    if (gameState.rightDoorState == "open") {
+        elements.rightDoorButton.src = assets.rightDoorButton.on;
+        gameState.rightDoorState = "closed";
+
+        elements.rightDoor.style.top = "158px";
+    }
+    else {
+        elements.rightDoorButton.src = assets.rightDoorButton.off;
+        gameState.rightDoorState = "open";
+
+        elements.rightDoor.style.top = "-354px";
+    }
+}
+
+function toggleRightLight(){
+    if (gameState.rightLightState == "off") {
+        elements.rightLightButton.src = assets.rightLightButton.on;
+        gameState.rightLightState = "on";
+
+        elements.rightDoorwayLight.style.opacity = 1;
+
+        //This if statment is for the Bonnie test, it can be removed eventually
+        if (gameState.testChicaAppearance == "off") {
+            elements.rightWindowLight.style.opacity = 1;
+        }
+        else {
+            elements.rightWindowChica.style.opacity = 1;    //REMOVE LATER
+        }
+    }
+    else {
+        elements.rightLightButton.src = assets.rightLightButton.off;
+        gameState.rightLightState = "off";
+
+        elements.rightDoorwayLight.style.opacity = 0;
+        elements.rightWindowLight.style.opacity = 0;
+
+        //This statment is for the Bonnie test, it can be removed eventually
+        elements.rightWindowChica.style.opacity = 0;    //REMOVE LATER
+    }
+}
+
+function handleKeyboardInput(event){
+    if (event.key.toLowerCase() == "b") {
+        if (gameState.testBonnieAppearance == "off") {
+            gameState.testBonnieAppearance = "on";
+        }
+        else {
+            gameState.testBonnieAppearance = "off";
+        }
+        console.log("Bonnie: ", gameState.testBonnieAppearance);    //REMOVE LATER
+    }
+    else if (event.key.toLowerCase() == "c") {
+        if (gameState.testChicaAppearance == "off") {
+            gameState.testChicaAppearance = "on";
+        }
+        else {
+            gameState.testChicaAppearance = "off";
+        }
+        console.log("Chica: ", gameState.testChicaAppearance);      //REMOVE LATER
+    }
+}
+
+function toggleMonitor(){
     // Monitor up sequence
-    if(monitorStatus == "down"){
-        monitor.style.pointerEvents = "all";
+    if (gameState.monitorStatus == "down") {
+        elements.monitor.style.pointerEvents = "all";
         let monitorFrame = 1;
 
-        let monitorSequence = setInterval(function(){
-            monitor.src = monitorFrames[monitorFrame];
+        let monitorSequence = setInterval(function () {
+            elements.monitor.src = assets.monitorFrames[monitorFrame];
 
             monitorFrame++;
 
-            if(monitorFrame > 9){
+            if (monitorFrame > 9) {
                 clearInterval(monitorSequence);
-                monitorStatus = "up";
-                monitorButton.style.zIndex = 30;
+                gameState.monitorStatus = "up";
+                elements.monitorButton.style.zIndex = 30;
             }
 
-        }, 1000);
-        
+        }, 40);
+
     }
 
     // Monitor down sequence
-    else{
+    else {
 
         let monitorFrame = 8;
-        monitorButton.style.zIndex = 10;
+        elements.monitorButton.style.zIndex = 10;
 
-        let monitorSequence = setInterval(function(){
-            monitor.src = monitorFrames[monitorFrame]
+        let monitorSequence = setInterval(function () {
+            elements.monitor.src = assets.monitorFrames[monitorFrame]
 
             monitorFrame--;
 
-            if(monitorFrame < 0){
+            if (monitorFrame < 0) {
                 clearInterval(monitorSequence);
-                monitorStatus = "down";
-                monitor.style.pointerEvents = "none";
+                gameState.monitorStatus = "down";
+                elements.monitor.style.pointerEvents = "none";
             }
-
-
-        }, 1000);
-
-        
+        }, 40);
     }
-
-});
+}
