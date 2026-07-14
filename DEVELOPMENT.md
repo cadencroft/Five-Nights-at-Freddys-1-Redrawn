@@ -77,10 +77,10 @@ I am a Software Engineering and Data Science Mathematics student at IUP, and I a
 
 **Solution:** The z-index controls layering. I gave the monitor button a z-index of 10 and the monitor animation a z-index of 20 so it will be overtop of the monitor button. Then after the monitor aniamation stops, the monitor button gets a z-index of 30 so it reappears ontop. Then when the monitor is closed, the monitor button's z-index is reset back to 10.
 
-### Monitor Animation Different With Github Pages
+### Monitor Animation Bugged On GitHub Pages 7/14/26
 **Problem:** When I use the live server, the monitor animation works perfectly fine. However when I push to GitHub and go on pages, it skips from the first frame to the last frame. In Inspect Elements > Network it shows almost all of the frames as status: (canceled).
 
-**Solution:** TBD
+**Solution:** The reason for the the animation being different is that GitHub Pages had to request the images, while live server already had them. When GitHub pages would fetch an image, it would get interupted by the next frame's request so that is what caused them to be (canceled). To fix this, I added a preloading function, which goes through each frame and preloads them into an Image object so that when its time to do the animation, the frames do not need to be retrieved.
 
 ## **Needs Fixed / Changed**
 - [ ] Bonnie and Chica's appearance in the office are controlled by "b" and "c" instead of game logic

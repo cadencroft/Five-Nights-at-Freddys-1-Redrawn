@@ -92,8 +92,9 @@ const elements = {
     rightWindowChica:   document.getElementById("right-window-chica"),
 
     monitorButton:      document.getElementById("monitor-button"),
-    monitor:            document.getElementById("monitor")
-    
+    monitor:            document.getElementById("monitor"),
+    cameraMap:          document.getElementById("camera-map"),
+    cameraButtonsDiv:   document.getElementById("camera-buttons-div")
 }
 
 // ====================================================================================
@@ -235,6 +236,8 @@ function toggleMonitor(){
                 clearInterval(monitorSequence);
                 gameState.monitorStatus = "up";
                 elements.monitorButton.style.zIndex = 30;
+                elements.cameraMap.style.opacity = 1;
+                elements.cameraButtonsDiv.style.opacity = 1;
             }
 
         }, 40);
@@ -243,12 +246,13 @@ function toggleMonitor(){
 
     // Monitor down sequence
     else {
-
         let monitorFrame = 8;
         elements.monitorButton.style.zIndex = 10;
+        elements.cameraMap.style.opacity = 0;
+        elements.cameraButtonsDiv.style.opacity = 0;
 
         let monitorSequence = setInterval(function () {
-            elements.monitor.src = assets.monitorFrames[monitorFrame]
+            elements.monitor.src = assets.monitorFrames[monitorFrame];
 
             monitorFrame--;
 

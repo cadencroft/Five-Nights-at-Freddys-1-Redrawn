@@ -126,3 +126,70 @@ body {
 
     z-index: 20;
 }
+
+#camera-map{
+    opacity: 0;
+    pointer-events: none;
+
+    z-index: 40;
+}
+
+#camera-buttons-div{
+    position: absolute;
+    opacity: 0;
+    z-index: 50;
+
+}
+#cam-1a{
+    left: 892px;
+    top: 223px;
+}
+
+#cam-1b{
+    left: 878px;
+    top: 273px;
+}
+
+#cam-1c{
+    left:818px;
+    top: 350px;
+}
+
+#cam-2a{
+    left: 882px;
+    top: 497px;
+}
+
+#cam-2b{
+    left: 882px;
+    top: 545px;
+}
+#cam-3{
+    left: 808px;
+    top: 442px;
+}
+
+#cam-4a{
+    left: 1033px;
+    top: 497px;
+}
+
+#cam-4b{
+    left: 1033px;
+    top: 545px;
+}
+
+#cam-5{
+    left: 748px;
+    top: 307px;
+}
+
+#cam-6{
+    left: 1161px;
+    top: 445px;
+}
+
+#cam-7{
+    left: 1190px;
+    top: 302px;
+}
