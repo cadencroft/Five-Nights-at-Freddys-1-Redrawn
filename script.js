@@ -37,6 +37,20 @@ const assets = {
     ]
 };
 
+
+function preLoadMonitorFrames(){
+    assets.monitorFrames.forEach(function(path){
+        const img = new Image();
+        img.src = path;
+
+    })
+};
+
+preLoadMonitorFrames();
+
+
+
+
 // ====================================================================================
 // GAME STATE VARIABLES
 // ====================================================================================
