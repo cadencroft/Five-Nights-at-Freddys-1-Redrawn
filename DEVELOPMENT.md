@@ -54,6 +54,14 @@ I am a Software Engineering and Data Science Mathematics student at IUP, and I a
 - Organized the code into logical sections (assets, game state, HTML elements, event listeners, and game functions).
 - Reduced code duplication by moving event listener logic into functions.
 - Added an `assets` object for storing image paths, a `gameState` object for storing global game state variables, and an `elements` object for storing HTML element references.
+- Added an asset preloading system for the monitor animation frames to fix bugged animation on GitHub Pages.
+- Added camera buttons with on/off sprites to the monitor screen.
+- Added functionality to make camera buttons change appearance when pressed.
+- Added camera map UI to the monitor screen.
+- Added temporary camera images so that the camera buttons can be tested.
+- Added functionality to make the camera buttons change to their respective camera image.
+- Added `turnOffLight`, `turnOnLight`, `closeDoor`, and `openDoor` helper functions and reorganized code within `toggleLeftDoor`, `toggleLeftLight`, `toggleRightDoor`, and `toggleRightLight` for efficiency.
+- Added functionality to force left and right doorway lights off whenever the monitor is raised. 
 
 ## **Problems and Solutions**
 
@@ -85,4 +93,5 @@ I am a Software Engineering and Data Science Mathematics student at IUP, and I a
 ## **Needs Fixed / Changed**
 - [ ] Bonnie and Chica's appearance in the office are controlled by "b" and "c" instead of game logic
 - [ ] Screen needs resized and properly scaled for any device
-- [ ] Monitor flip animation needs to work properly on GitHub Pages. 
+- [ ] Monitor flip animation needs to work properly on GitHub Pages
+- [ ] Replace temporary camera images with real ones

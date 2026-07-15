@@ -140,56 +140,64 @@ body {
     z-index: 50;
 
 }
-#cam-1a{
+#cam-1a-button{
     left: 892px;
     top: 223px;
 }
 
-#cam-1b{
+#cam-1b-button{
     left: 878px;
     top: 273px;
 }
 
-#cam-1c{
+#cam-1c-button{
     left:818px;
     top: 350px;
 }
 
-#cam-2a{
+#cam-2a-button{
     left: 882px;
     top: 497px;
 }
 
-#cam-2b{
+#cam-2b-button{
     left: 882px;
     top: 545px;
 }
-#cam-3{
+#cam-3-button{
     left: 808px;
     top: 442px;
 }
 
-#cam-4a{
+#cam-4a-button{
     left: 1033px;
     top: 497px;
 }
 
-#cam-4b{
+#cam-4b-button{
     left: 1033px;
     top: 545px;
 }
 
-#cam-5{
+#cam-5-button{
     left: 748px;
     top: 307px;
 }
 
-#cam-6{
+#cam-6-button{
     left: 1161px;
     top: 445px;
 }
 
-#cam-7{
+#cam-7-button{
     left: 1190px;
     top: 302px;
+}
+
+#camera-background{
+    opacity: 0;
+    pointer-events: none;
+
+    z-index: 25;
+
 }
