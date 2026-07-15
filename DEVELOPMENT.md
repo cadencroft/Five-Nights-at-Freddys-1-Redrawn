@@ -25,6 +25,9 @@ I am a Software Engineering and Data Science Mathematics student at IUP, and I a
 - [x] Door and light buttons are in place and control their respective doors and lights
 - [x] Door animations implemented
 - [x] Temporary Bonnie and Chica office appearance for testing
+- [x] Monitor flips up and down
+- [x] When the monitor is up, the camera UI appear
+- [x] The camera buttons are in place and will change the camera image
 
 
 ## **Development Milestones**
@@ -60,8 +63,9 @@ I am a Software Engineering and Data Science Mathematics student at IUP, and I a
 - Added camera map UI to the monitor screen.
 - Added temporary camera images so that the camera buttons can be tested.
 - Added functionality to make the camera buttons change to their respective camera image.
-- Added `turnOffLight`, `turnOnLight`, `closeDoor`, and `openDoor` helper functions and reorganized code within `toggleLeftDoor`, `toggleLeftLight`, `toggleRightDoor`, and `toggleRightLight` for efficiency.
+- Added `turnOffLight`, `turnOnLight`, `closeDoor`, `openDoor`, `setCameraButton`, and `setCameraBackground` helper functions and refactored code within their parent functions `toggleLeftDoor`, `toggleLeftLight`, `toggleRightDoor`, `toggleRightLight`, and `switchCamera` for efficiency.
 - Added functionality to force left and right doorway lights off whenever the monitor is raised. 
+- Added `flipMonitorUp `, `flipMonitorDown`, `toggleTestBonnieAppearance` and `toggleTestChicaAppearance` and refactored code within their parent functions `toggleMonitor` and `handleKeyboardInput` for efficiency.
 
 ## **Problems and Solutions**
 
@@ -93,5 +97,5 @@ I am a Software Engineering and Data Science Mathematics student at IUP, and I a
 ## **Needs Fixed / Changed**
 - [ ] Bonnie and Chica's appearance in the office are controlled by "b" and "c" instead of game logic
 - [ ] Screen needs resized and properly scaled for any device
-- [ ] Monitor flip animation needs to work properly on GitHub Pages
+- [x] Monitor flip animation needs to work properly on GitHub Pages
 - [ ] Replace temporary camera images with real ones

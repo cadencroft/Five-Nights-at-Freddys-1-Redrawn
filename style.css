@@ -1,6 +1,8 @@
-
-/* General */
-
+/* 
+====================================================================================
+General
+==================================================================================== 
+*/
 body {
     margin: 0;
     display: flex;
@@ -24,8 +26,11 @@ body {
     -webkit-user-drag: none;
 }
 
-/* Door and Light Buttons */
-
+/* 
+====================================================================================
+Doors and Lights
+==================================================================================== 
+*/
 #left-door-button {
     left: 35px;
     top: 327px;
@@ -36,14 +41,10 @@ body {
     top: 369px;
 }
 
-#right-door-button {
-    left: 1218px;
-    top: 327px;
-}
-
-#right-light-button {
-    left: 1218px;
-    top: 369px;
+#left-door {
+    left: 84px;
+    top: -354px; /*158px = door closed*/
+    transition: top 0.7s;
 }
 
 #left-doorway-light {
@@ -58,33 +59,6 @@ body {
     opacity: 0;
 }
 
-#right-doorway-light {
-    left: 1082px;
-    top: 153px;
-    opacity: 0;
-}
-
-#left-door {
-    left: 84px;
-    top: -354px;
-    /*158 door closed*/
-
-    transition: top 0.7s;
-}
-
-#right-door {
-    left: 1087px;
-    top: -354px;
-    /* 158 door closed */
-
-    transition: top 0.7s;
-}
-
-#right-door-overlay {
-    left: 1075px;
-
-}
-
 #left-window-light {
     left: 202px;
     top: 241px;
@@ -94,6 +68,32 @@ body {
 #left-window-bonnie {
     left: 202px;
     top: 241px;
+    opacity: 0;
+}
+
+#right-door-button {
+    left: 1218px;
+    top: 327px;
+}
+
+#right-light-button {
+    left: 1218px;
+    top: 369px;
+}
+
+#right-door {
+    left: 1087px;
+    top: -354px; /* 158px = door closed */
+    transition: top 0.7s;
+}
+
+#right-door-overlay {
+    left: 1075px;
+}
+
+#right-doorway-light {
+    left: 1082px;
+    top: 153px;
     opacity: 0;
 }
 
@@ -109,28 +109,27 @@ body {
     opacity: 0;
 }
 
-
-/* Monitor and Cameras  */
-
+/* 
+====================================================================================
+Monitor and Cameras
+==================================================================================== 
+*/
 #monitor-button{
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
     top:650px;
-
     z-index: 10;
 }
 
 #monitor{
     pointer-events: none;
-
     z-index: 20;
 }
 
 #camera-map{
     opacity: 0;
     pointer-events: none;
-
     z-index: 40;
 }
 
@@ -138,7 +137,6 @@ body {
     position: absolute;
     opacity: 0;
     z-index: 50;
-
 }
 #cam-1a-button{
     left: 892px;
@@ -197,7 +195,5 @@ body {
 #camera-background{
     opacity: 0;
     pointer-events: none;
-
     z-index: 25;
-
 }

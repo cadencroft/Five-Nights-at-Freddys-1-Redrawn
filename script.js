@@ -37,7 +37,6 @@ const assets = {
     ]
 };
 
-
 function preLoadMonitorFrames(){
     assets.monitorFrames.forEach(function(path){
         const img = new Image();
@@ -47,9 +46,6 @@ function preLoadMonitorFrames(){
 };
 
 preLoadMonitorFrames();
-
-
-
 
 // ====================================================================================
 // GAME STATE VARIABLES
@@ -112,13 +108,13 @@ const elements = {
 // EVENT LISTENERS
 // ====================================================================================
 
+document.addEventListener("keydown", handleKeyboardInput);
+
 elements.leftDoorButton.addEventListener("click", toggleLeftDoor);
 elements.leftLightButton.addEventListener("click", toggleLeftLight);
 
 elements.rightDoorButton.addEventListener("click", toggleRightDoor);
 elements.rightLightButton.addEventListener("click", toggleRightLight);
-
-document.addEventListener("keydown", handleKeyboardInput);
 
 elements.monitorButton.addEventListener("mouseenter", toggleMonitor)
 
@@ -138,6 +134,17 @@ elements.cam7Button.addEventListener("click",  () => switchCamera("7"));
 // MAIN GAME FUNCTIONS
 // ====================================================================================
 
+function handleKeyboardInput(event){
+    if      (event.key.toLowerCase() == "b") {
+
+        toggleTestBonnieAppearance();
+    }
+    else if (event.key.toLowerCase() == "c") {
+
+        toggleTestChicaAppearance();
+    }
+};
+
 function toggleLeftDoor(){
     if (gameState.leftDoorState == "open") {
 
@@ -149,7 +156,7 @@ function toggleLeftDoor(){
             openDoor("left");
             
         }
-}
+};
 
 function toggleLeftLight(){
     if (gameState.leftLightState == "off") {
@@ -162,7 +169,7 @@ function toggleLeftLight(){
         turnLightOff("left");
         
     }
-}
+};
 
 function toggleRightDoor(){
     if (gameState.rightDoorState == "open") {
@@ -175,7 +182,7 @@ function toggleRightDoor(){
         openDoor("right");
         
     }
-}
+};
 
 function toggleRightLight(){
     if (gameState.rightLightState == "off") {
@@ -188,86 +195,23 @@ function toggleRightLight(){
         turnLightOff("right");
         
     }
-}
-
-function handleKeyboardInput(event){
-    if (event.key.toLowerCase() == "b") {
-        if (gameState.testBonnieAppearance == "off") {
-            gameState.testBonnieAppearance = "on";
-        }
-        else {
-            gameState.testBonnieAppearance = "off";
-        }
-        console.log("Bonnie: ", gameState.testBonnieAppearance);    //REMOVE LATER
-    }
-    else if (event.key.toLowerCase() == "c") {
-        if (gameState.testChicaAppearance == "off") {
-            gameState.testChicaAppearance = "on";
-        }
-        else {
-            gameState.testChicaAppearance = "off";
-        }
-        console.log("Chica: ", gameState.testChicaAppearance);      //REMOVE LATER
-    }
-}
+};
 
 function toggleMonitor(){
-
-    //Force door lights off
-    turnLightOff("left");
-    turnLightOff("right");
-
-    // Monitor up sequence
     if (gameState.monitorStatus == "down") {
-        elements.monitor.style.pointerEvents = "all";
-        let monitorFrame = 1;
 
-        let monitorSequence = setInterval(function () {
-            elements.monitor.src = assets.monitorFrames[monitorFrame];
-
-            monitorFrame++;
-
-            if (monitorFrame > 9) {
-                clearInterval(monitorSequence);
-                gameState.monitorStatus = "up";
-                elements.monitorButton.style.zIndex = 30;
-                elements.cameraMap.style.opacity = 1;
-                elements.cameraButtonsDiv.style.opacity = 1;
-
-                elements.cameraBackground.style.opacity = 0.4
-                
-
-            }
-
-        }, 40);
+        flipMonitorUp();
 
     }
-
-    // Monitor down sequence
     else {
-        let monitorFrame = 8;
-        elements.monitorButton.style.zIndex = 10;
-        elements.cameraMap.style.opacity = 0;
-        elements.cameraButtonsDiv.style.opacity = 0;
-        elements.cameraBackground.style.opacity = 0;
-
-        let monitorSequence = setInterval(function () {
-            elements.monitor.src = assets.monitorFrames[monitorFrame];
-
-            monitorFrame--;
-
-            if (monitorFrame < 0) {
-                clearInterval(monitorSequence);
-                gameState.monitorStatus = "down";
-                elements.monitor.style.pointerEvents = "none";
-            }
-        }, 40);
+        
+        flipMonitorDown();
     }
 };
 
 function switchCamera(newCamera){
 
-    console.log(newCamera);
+    console.log(newCamera);     //REMOVE LATER
 
     // Turn current camera button off
     setCameraButton(gameState.currentCamera, "off");
@@ -275,13 +219,11 @@ function switchCamera(newCamera){
     // Turn new camera button on
     setCameraButton(newCamera, "on")
 
-    // Updates the current camera
+    // Update the current camera
     gameState.currentCamera = newCamera;
 
+    //Change to new camera's image
     setCameraBackground(newCamera);
-
-
-
 };
 
 
@@ -303,7 +245,6 @@ function closeDoor(side){
         elements.rightDoor.style.top = "158px";
 
     }
-
 }
 
 function openDoor(side){
@@ -318,7 +259,6 @@ function openDoor(side){
         gameState.rightDoorState = "open";
 
         elements.rightDoor.style.top = "-354px";
-
     }
 }
 
@@ -344,10 +284,7 @@ function turnLightOff(side){
 
         //This statment is for the Bonnie test, it can be removed eventually
         elements.rightWindowChica.style.opacity = 0;    //REMOVE LATER
-
     }
-
-
 };
 
 function turnLightOn(side){
@@ -383,6 +320,57 @@ function turnLightOn(side){
 
 };
 
+function flipMonitorUp(){
+
+    //Force door lights off
+    turnLightOff("left");
+    turnLightOff("right");
+
+    elements.monitor.style.pointerEvents = "all";
+    let monitorFrame = 1;
+
+    let monitorSequence = setInterval(function () {
+        elements.monitor.src = assets.monitorFrames[monitorFrame];
+
+        monitorFrame++;
+
+        if (monitorFrame > 9) {
+            clearInterval(monitorSequence);
+            gameState.monitorStatus = "up";
+            elements.monitorButton.style.zIndex = 30;
+            elements.cameraMap.style.opacity = 1;
+            elements.cameraButtonsDiv.style.opacity = 1;
+
+            elements.cameraBackground.style.opacity = 0.4
+        }
+
+    }, 40);
+
+};
+
+function flipMonitorDown(){
+
+    let monitorFrame = 8;
+    elements.monitorButton.style.zIndex = 10;
+    elements.cameraMap.style.opacity = 0;
+    elements.cameraButtonsDiv.style.opacity = 0;
+    elements.cameraBackground.style.opacity = 0;
+
+    let monitorSequence = setInterval(function () {
+        elements.monitor.src = assets.monitorFrames[monitorFrame];
+
+        monitorFrame--;
+
+        if (monitorFrame < 0) {
+            clearInterval(monitorSequence);
+            gameState.monitorStatus = "down";
+            elements.monitor.style.pointerEvents = "none";
+        }
+    }, 40);
+};
+
+
+
 function setCameraButton(camera, state){
     //Changes the path of the respective camera button using string manipulation
     if(state == "on"){
@@ -391,7 +379,6 @@ function setCameraButton(camera, state){
     else{
         elements[`cam${camera}Button`].src = `images/monitor/cam-${camera}-button-off.png`;
     }
-
 }
 
 function setCameraBackground(camera){
@@ -399,3 +386,24 @@ function setCameraBackground(camera){
 
 };
 
+//TEMPORARY FUNCTION - REMOVE LATER
+function toggleTestBonnieAppearance(){
+    if (gameState.testBonnieAppearance == "off") {
+        gameState.testBonnieAppearance = "on";
+    }
+    else {
+        gameState.testBonnieAppearance = "off";
+    }
+    console.log("Bonnie: ", gameState.testBonnieAppearance);    
+}
+
+//TEMPORARY FUNCTION - REMOVE LATER
+function toggleTestChicaAppearance(){
+    if (gameState.testChicaAppearance == "off") {
+        gameState.testChicaAppearance = "on";
+    }
+    else {
+        gameState.testChicaAppearance = "off";
+    }
+    console.log("Chica: ", gameState.testChicaAppearance);
+}
