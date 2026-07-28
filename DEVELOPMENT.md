@@ -67,6 +67,11 @@ I am a Software Engineering and Data Science Mathematics student at IUP, and I a
 - Added functionality to force left and right doorway lights off whenever the monitor is raised. 
 - Added `flipMonitorUp `, `flipMonitorDown`, `toggleTestBonnieAppearance` and `toggleTestChicaAppearance` and refactored code within their parent functions `toggleMonitor` and `handleKeyboardInput` for efficiency.
 
+### 7/27/26
+- Organized the door and button sprites into `doors-buttons` folder, and the office background into `background` folder.
+- Refactored `setCameraButton` to be simpler.
+- Refactored `index.html` and `style.css` to separate game world elements and ui elements by adding a `viewport` -> `game-world` div branch, and a `user-interface` div branch.
+
 ## **Problems and Solutions**
 
 ### Button Sprite Hitbox Overlap 7/9/26
