@@ -53,17 +53,20 @@ preLoadMonitorFrames();
 
 const gameState = {
 
-    leftDoorState:          "open",
-    rightDoorState:         "open",
+    leftDoorState:                  "open",         // open | closed
+    rightDoorState:                 "open",         // open | closed
 
-    leftLightState:         "off",
-    rightLightState:        "off",
+    leftLightState:                 "off",          // off | on
+    rightLightState:                "off",          // off | on
 
-    testBonnieAppearance:   "off",    //REMOVE LATER AND REPLACE WITH bonnieLocation
-    testChicaAppearance:    "off",      //REMOVE LATER AND REPLACE WITH chicaLocation
+    testBonnieAppearance:           "off",          // off | on     REMOVE LATER AND REPLACE WITH bonnieLocation
+    testChicaAppearance:            "off",          // off | on     REMOVE LATER AND REPLACE WITH chicaLocation
 
-    monitorStatus:          "down",
-    currentCamera:          "1a"
+    monitorStatus:                  "down",         // down | up
+    monitorAnimationState:          "finished",     // finished | inProgress
+    mouseInMonitorButtonHitbox:     "no",           // no | yes
+
+    currentCamera:                  "1a"            // 1a | 1b | 1c | 2a | 2b | 3 | 4a | 4b | 5 | 6 | 7
 }
 
 // ====================================================================================
@@ -71,37 +74,40 @@ const gameState = {
 // ====================================================================================
 
 const elements = {
-    leftDoorButton:     document.getElementById("left-door-button"),
-    leftLightButton:    document.getElementById("left-light-button"),
-    leftDoor:           document.getElementById("left-door"),
-    leftDoorwayLight:   document.getElementById("left-doorway-light"),
-    leftWindowLight:    document.getElementById("left-window-light"),
-    leftDoorwayBonnie:  document.getElementById("left-doorway-bonnie"),
-    leftWindowBonnie:   document.getElementById("left-window-bonnie"),
 
-    rightDoorButton:    document.getElementById("right-door-button"),
-    rightLightButton:   document.getElementById("right-light-button"),
-    rightDoor:          document.getElementById("right-door"),
-    rightDoorwayLight:  document.getElementById("right-doorway-light"),
-    rightWindowLight:   document.getElementById("right-window-light"),
-    rightWindowChica:   document.getElementById("right-window-chica"),
+    leftDoorButton:         document.getElementById("left-door-button"),
+    leftLightButton:        document.getElementById("left-light-button"),
+    leftDoor:               document.getElementById("left-door"),
+    leftDoorwayLight:       document.getElementById("left-doorway-light"),
+    leftWindowLight:        document.getElementById("left-window-light"),
+    leftDoorwayBonnie:      document.getElementById("left-doorway-bonnie"),
+    leftWindowBonnie:       document.getElementById("left-window-bonnie"),
 
-    monitorButton:      document.getElementById("monitor-button"),
-    monitor:            document.getElementById("monitor"),
-    cameraMap:          document.getElementById("camera-map"),
-    cameraButtonsDiv:   document.getElementById("camera-buttons-div"),
-    cam1aButton:        document.getElementById("cam-1a-button"),
-    cam1bButton:        document.getElementById("cam-1b-button"),
-    cam1cButton:        document.getElementById("cam-1c-button"),
-    cam2aButton:        document.getElementById("cam-2a-button"),
-    cam2bButton:        document.getElementById("cam-2b-button"),
-    cam3Button:         document.getElementById("cam-3-button"),
-    cam4aButton:        document.getElementById("cam-4a-button"),
-    cam4bButton:        document.getElementById("cam-4b-button"),
-    cam5Button:         document.getElementById("cam-5-button"),
-    cam6Button:         document.getElementById("cam-6-button"),
-    cam7Button:         document.getElementById("cam-7-button"),
-    cameraBackground:   document.getElementById("camera-background")
+    rightDoorButton:        document.getElementById("right-door-button"),
+    rightLightButton:       document.getElementById("right-light-button"),
+    rightDoor:              document.getElementById("right-door"),
+    rightDoorwayLight:      document.getElementById("right-doorway-light"),
+    rightWindowLight:       document.getElementById("right-window-light"),
+    rightWindowChica:       document.getElementById("right-window-chica"),
+
+    monitorButton:          document.getElementById("monitor-button"),
+    monitorButtonHitbox:    document.getElementById("monitor-button-hitbox"),
+    monitor:                document.getElementById("monitor"),
+    
+    cameraMap:              document.getElementById("camera-map"),
+    cameraButtonsDiv:       document.getElementById("camera-buttons-div"),
+    cam1aButton:            document.getElementById("cam-1a-button"),
+    cam1bButton:            document.getElementById("cam-1b-button"),
+    cam1cButton:            document.getElementById("cam-1c-button"),
+    cam2aButton:            document.getElementById("cam-2a-button"),
+    cam2bButton:            document.getElementById("cam-2b-button"),
+    cam3Button:             document.getElementById("cam-3-button"),
+    cam4aButton:            document.getElementById("cam-4a-button"),
+    cam4bButton:            document.getElementById("cam-4b-button"),
+    cam5Button:             document.getElementById("cam-5-button"),
+    cam6Button:             document.getElementById("cam-6-button"),
+    cam7Button:             document.getElementById("cam-7-button"),
+    cameraBackground:       document.getElementById("camera-background")
 }
 
 // ====================================================================================
@@ -116,7 +122,8 @@ elements.leftLightButton.addEventListener("click", toggleLeftLight);
 elements.rightDoorButton.addEventListener("click", toggleRightDoor);
 elements.rightLightButton.addEventListener("click", toggleRightLight);
 
-elements.monitorButton.addEventListener("mouseenter", toggleMonitor)
+elements.monitorButtonHitbox.addEventListener("mouseenter", toggleMonitor);
+elements.monitorButtonHitbox.addEventListener("mouseleave", mouseLeaveMonitorButtonHitboxEvent)
 
 elements.cam1aButton.addEventListener("click", () => switchCamera("1a"));
 elements.cam1bButton.addEventListener("click", () => switchCamera("1b"));
@@ -198,6 +205,13 @@ function toggleRightLight(){
 };
 
 function toggleMonitor(){
+
+    gameState.mouseInMonitorButtonHitbox = "yes"
+
+    if (gameState.monitorAnimationState == "inProgress") return;
+
+    makeMonitorButtonHidden();
+
     if (gameState.monitorStatus == "down") {
 
         flipMonitorUp();
@@ -207,6 +221,15 @@ function toggleMonitor(){
         
         flipMonitorDown();
     }
+};
+
+function mouseLeaveMonitorButtonHitboxEvent(){
+    gameState.mouseInMonitorButtonHitbox = "no";
+
+    if (gameState.monitorAnimationState == "finished"){
+        makeMonitorButtonVisible();
+    }
+
 };
 
 function switchCamera(newCamera){
@@ -320,8 +343,17 @@ function turnLightOn(side){
 
 };
 
+function makeMonitorButtonHidden(){
+    elements.monitorButton.style.opacity = 0;
+};
+
+function makeMonitorButtonVisible(){
+    elements.monitorButton.style.opacity = 1;
+};
+
 function flipMonitorUp(){
 
+    gameState.monitorAnimationState = "inProgress";
     //Force door lights off
     turnLightOff("left");
     turnLightOff("right");
@@ -337,21 +369,27 @@ function flipMonitorUp(){
         if (monitorFrame > 9) {
             clearInterval(monitorSequence);
             gameState.monitorStatus = "up";
-            elements.monitorButton.style.zIndex = 30;
             elements.cameraMap.style.opacity = 1;
             elements.cameraButtonsDiv.style.opacity = 1;
 
             elements.cameraBackground.style.opacity = 0.4
+
+            gameState.monitorAnimationState = "finished";
+
+            if(gameState.mouseInMonitorButtonHitbox == "no"){
+                makeMonitorButtonVisible();
+            }
         }
 
-    }, 40);
+    }, 50);
 
 };
 
 function flipMonitorDown(){
 
+    gameState.monitorAnimationState = "inProgress";
+
     let monitorFrame = 8;
-    elements.monitorButton.style.zIndex = 10;
     elements.cameraMap.style.opacity = 0;
     elements.cameraButtonsDiv.style.opacity = 0;
     elements.cameraBackground.style.opacity = 0;
@@ -365,8 +403,14 @@ function flipMonitorDown(){
             clearInterval(monitorSequence);
             gameState.monitorStatus = "down";
             elements.monitor.style.pointerEvents = "none";
+
+            gameState.monitorAnimationState = "finished";
+
+            if(gameState.mouseInMonitorButtonHitbox == "no"){
+                makeMonitorButtonVisible();
+            }
         }
-    }, 40);
+    }, 50);
 };
 
 function setCameraButton(camera, state){

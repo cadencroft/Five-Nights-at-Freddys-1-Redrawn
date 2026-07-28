@@ -70,7 +70,12 @@ I am a Software Engineering and Data Science Mathematics student at IUP, and I a
 ### 7/27/26
 - Organized the door and button sprites into `doors-buttons` folder, and the office background into `background` folder.
 - Refactored `setCameraButton` to be simpler.
+
+### 7/28/26
 - Refactored `index.html` and `style.css` to separate game world elements and ui elements by adding a `viewport` -> `game-world` div branch, and a `user-interface` div branch.
+- Added a hitbox for the monitor button and switched event listeners from the montor button image to the hitbox. This allows for the monitor button sprite to turn invisible and visible without affecting the event listener.
+- Added a system to hide the monitor button sprite while the cursor is hovering over the monitor button hitbox, and for the button sprite to reappear once the cursor leaves the hitbox. Includes changes to `toggleMonitor`, `flipMonitorUp`, and `flipMonitorDown` and also includes new functions `mouseLeaveMonitorButtonHitboxEvent`, `makeMonitorButtonHidden`, and `makeMonitorButtonVisible`.
+- Added comments to show what the possible states are for the `gameState` variables.
 
 ## **Problems and Solutions**
 
@@ -98,6 +103,9 @@ I am a Software Engineering and Data Science Mathematics student at IUP, and I a
 **Problem:** When I use the live server, the monitor animation works perfectly fine. However when I push to GitHub and go on pages, it skips from the first frame to the last frame. In Inspect Elements > Network it shows almost all of the frames as status: (canceled).
 
 **Solution:** The reason for the the animation being different is that GitHub Pages had to request the images, while live server already had them. When GitHub pages would fetch an image, it would get interupted by the next frame's request so that is what caused them to be (canceled). To fix this, I added a preloading function, which goes through each frame and preloads them into an Image object so that when its time to do the animation, the frames do not need to be retrieved.
+
+### Monitor Button Glitchy and Too Sensitive
+**Problem:** When the mouse hovers over the monitor button, the animation starts playing which covers the mouse button. Then after the animation, the z-index of the mouse button is increased to overlay it overtop of the monitor interface. If the player keeps their mouse on the button during this time, it will activate the button and close the monitor prematurely.
 
 ## **Needs Fixed / Changed**
 - [ ] Bonnie and Chica's appearance in the office are controlled by "b" and "c" instead of game logic
