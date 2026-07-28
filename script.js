@@ -211,7 +211,7 @@ function toggleMonitor(){
 
 function switchCamera(newCamera){
 
-    console.log(newCamera);     //REMOVE LATER
+    console.log(newCamera);     // TODO REMOVE LATER
 
     // Turn current camera button off
     setCameraButton(gameState.currentCamera, "off");
@@ -369,16 +369,10 @@ function flipMonitorDown(){
     }, 40);
 };
 
-
-
 function setCameraButton(camera, state){
     //Changes the path of the respective camera button using string manipulation
-    if(state == "on"){
-        elements[`cam${camera}Button`].src = `images/monitor/cam-${camera}-button-on.png`;
-    }
-    else{
-        elements[`cam${camera}Button`].src = `images/monitor/cam-${camera}-button-off.png`;
-    }
+    elements[`cam${camera}Button`].src = `images/monitor/cam-${camera}-button-${state}.png`;
+
 }
 
 function setCameraBackground(camera){
