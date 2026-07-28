@@ -4,23 +4,23 @@
 
 const assets = {
     leftDoorButton: {
-        on:     "images/left-door-button-on.png",
-        off:    "images/left-door-button-off.png"
+        on:     "images/doors-buttons/left-door-button-on.png",
+        off:    "images/doors-buttons/left-door-button-off.png"
     },
 
     leftLightButton: {
-        on:     "images/left-light-button-on.png",
-        off:    "images/left-light-button-off.png"
+        on:     "images/doors-buttons/left-light-button-on.png",
+        off:    "images/doors-buttons/left-light-button-off.png"
     },
 
     rightDoorButton: {
-        on:     "images/right-door-button-on.png",
-        off:    "images/right-door-button-off.png"
+        on:     "images/doors-buttons/right-door-button-on.png",
+        off:    "images/doors-buttons/right-door-button-off.png"
     },
 
     rightLightButton: {
-        on:     "images/right-light-button-on.png",
-        off:    "images/right-light-button-off.png"
+        on:     "images/doors-buttons/right-light-button-on.png",
+        off:    "images/doors-buttons/right-light-button-off.png"
     },
 
     monitorFrames: [

@@ -6,7 +6,7 @@ This project, *Five Nights at Freddy's 1: Redrawn*, is a fan-made recreation by 
 The player takes on the role of a night guard working at Freddy Fazbear's Pizza. At first, the job seems simple, but it soon becomes clear that Freddy's is not as safe as it first seemed. In this recreation of the classic *Five Nights at Freddy's*, the player has to make it through five nights on high alert in order to survive. Shut the doors, watch the cameras, do whatever it takes to not let *them* in. Just don't forget about the power...
 
 ## **Project Overview**
-*Five Nights at Freddy's 1: Redrawn* is a personal project inspired by Scott Cawthon's *Five Nights at Freddy's*. Every visual asset in this project was redrawn from scratch in Procreate, and the game is being recreated using HTML, CSS, and JavaScript in Visual Studio Code. 
+*Five Nights at Freddy's 1: Redrawn* is a personal project inspired by Scott Cawthon's *Five Nights at Freddy's*. Every visual asset in this project was redrawn from scratch in Procreate, and the game was recreated using HTML, CSS, and JavaScript in Visual Studio Code. 
 
 I decided to create this project to accomplish a few goals. First of all, I wanted to become familiar with the process of making a game. I knew this project wouldn't make me an expert at game development, but rather it would teach me how to develop a strategy for creating the game, to design and draw the background images and sprites, to code in HTML, CSS, and JavaScript, to keep my code organized neatly while being efficient, to document my progress throughout development, and to test and fix bugs.
 
@@ -99,3 +99,4 @@ I am a Software Engineering and Data Science Mathematics student at IUP, and I a
 - [ ] Screen needs resized and properly scaled for any device
 - [x] Monitor flip animation needs to work properly on GitHub Pages
 - [ ] Replace temporary camera images with real ones
+- [ ] Add the "You" text in the camera map
