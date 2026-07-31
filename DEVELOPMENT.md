@@ -80,6 +80,9 @@ I am a Software Engineering and Data Science Mathematics student at IUP, and I a
 ### 7/30/26
 - Added title screen background along with "Play" and "Options" buttons.
 - Added functionality to make the Play and Options button scale up when hovered.
+- Added functionality to make the Play button transition into the office scene with a fade to black transition.
+- Added "Night X" text that displays the current night during the fade to black transition.
+- Added fade in effect when the game is opened.
 
 ## **Problems and Solutions**
 

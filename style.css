@@ -37,6 +37,9 @@ body {
     position: absolute;
     left: 0;
     top: 0;
+
+    opacity: 0;
+    pointer-events: none;
 }
 
 #game-world img {
@@ -62,6 +65,42 @@ body {
     user-select: none;
     -webkit-user-drag: none;
 }
+
+/* 
+====================================================================================
+Fade Screen
+==================================================================================== 
+*/
+
+#fade-black-screen{
+    width: 1280px;
+    height: 720px;
+
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    z-index: 2000;
+
+    background-color: black;
+    pointer-events: none;
+
+    opacity: 1;
+    transition: opacity 3s;
+}
+
+#night-text{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    opacity: 0;
+    transition: opacity 1s;
+    z-index: 2001;
+
+    transform: translate(-50%, -50%) scale(0.5);
+
+}
+
 
 /* 
 ====================================================================================
@@ -223,7 +262,7 @@ Monitor and Cameras
     height: 90px;
     transform: translateX(-50%);
     
-    background-color: red;          /*TODO Remove later */
+    /* background-color: red; */
     z-index: 120;
     opacity: 0.5;
     pointer-events: auto;

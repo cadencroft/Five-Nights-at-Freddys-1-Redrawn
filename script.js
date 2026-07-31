@@ -53,6 +53,9 @@ preLoadMonitorFrames();
 
 const gameState = {
 
+    currentScreen:                  "title",        // title | options | game | gameOver
+    currentNight:                   "1",            // 1 | 2 | 3 | 4 | 5
+
     leftDoorState:                  "open",         // open | closed
     rightDoorState:                 "open",         // open | closed
 
@@ -75,9 +78,15 @@ const gameState = {
 
 const elements = {
 
+    fadeBlackScreen:        document.getElementById("fade-black-screen"),
+
+    nightText:              document.getElementById("night-text"),
+
+    titleScreen:            document.getElementById("title-screen"),
     playButton:             document.getElementById("play-button"),
     optionsButton:          document.getElementById("options-button"),
 
+    gameWorld:              document.getElementById("game-world"),
     leftDoorButton:         document.getElementById("left-door-button"),
     leftLightButton:        document.getElementById("left-light-button"),
     leftDoor:               document.getElementById("left-door"),
@@ -117,6 +126,7 @@ const elements = {
 // EVENT LISTENERS
 // ====================================================================================
 
+window.addEventListener("load", loadIn);
 document.addEventListener("keydown", handleKeyboardInput);
 
 elements.playButton.addEventListener("click", pressPlay);
@@ -147,8 +157,47 @@ elements.cam7Button.addEventListener("click",  () => switchCamera("7"));
 // MAIN GAME FUNCTIONS
 // ====================================================================================
 
+function loadIn(){
+    console.log("Load");
+    setTimeout(()=>{
+        elements.fadeBlackScreen.style.opacity = 0;
+    }, 100);
+}
 function pressPlay(){
     console.log("Play Pressed");
+    elements.fadeBlackScreen.style.transition = "opacity 2s"
+    elements.fadeBlackScreen.style.opacity = 1; //2s transition
+    elements.fadeBlackScreen.style.pointerEvents = "auto";
+
+    setTimeout(()=>{
+        elements.titleScreen.style.opacity = 0;
+        elements.titleScreen.style.pointerEvents = "none";
+
+    },2000);
+
+    setTimeout(()=> {
+
+        elements.nightText.style.opacity = 1;
+
+    }, 3000);
+
+    setTimeout(()=> {
+
+        elements.nightText.style.opacity = 0;
+
+    }, 6000);
+
+    setTimeout(()=> {
+
+        elements.fadeBlackScreen.style.transition = "opacity 7s";
+        elements.fadeBlackScreen.style.opacity = 0;
+        elements.fadeBlackScreen.style.pointerEvents = "none";
+
+        elements.gameWorld.style.opacity = 1;
+        elements.gameWorld.style.pointerEvents = "auto";
+        gameState.currentScreen = "game";
+
+    }, 7000);
 };
 
 function pressOptions(){
@@ -394,7 +443,7 @@ function flipMonitorUp(){
                 makeMonitorButtonVisible();
             }
         }
-    }, 50);
+    }, 40);
 
 };
 
@@ -423,7 +472,7 @@ function flipMonitorDown(){
                 makeMonitorButtonVisible();
             }
         }
-    }, 50);
+    }, 40);
 };
 
 function setCameraButton(camera, state){
