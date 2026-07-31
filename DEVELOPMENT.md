@@ -83,6 +83,7 @@ I am a Software Engineering and Data Science Mathematics student at IUP, and I a
 - Added functionality to make the Play button transition into the office scene with a fade to black transition.
 - Added "Night X" text that displays the current night during the fade to black transition.
 - Added fade in effect when the game is opened.
+- Replaced `office-background.png` with a new version that fixed a visual error.
 
 ## **Problems and Solutions**
 
