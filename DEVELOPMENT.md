@@ -87,6 +87,10 @@ I am a Software Engineering and Data Science Mathematics student at IUP, and I a
 
 ### 7/31/26
 - Refactored `script.js` to better organize functions by moving functions from "main" and "helper" categories to instead by organized by purpose, such as "initialization", "doors", "lights", etc.
+- Refactored `pressPlay` into functions `fadeToBlack`, `hideTitleScreen`, `showNightText`, `hideNightText`, `startGame` to improve organization and readability
+- Function `startGame` acts as the start to the game and uses `fadeFromBlack` and `showGameWorld`.
+- Functions `fadeToBlack` and `fadeFromBlack` now have a parameter to specify how many seconds the fade lasts.
+- Function `loadIn` now preloads the assets using `preLoadAssets` function, along with fading in from black.
 
 ## **Problems and Solutions**
 

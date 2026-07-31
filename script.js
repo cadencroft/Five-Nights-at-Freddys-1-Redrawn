@@ -37,16 +37,6 @@ const assets = {
     ]
 };
 
-function preLoadMonitorFrames(){
-    assets.monitorFrames.forEach(function(path){
-        const img = new Image();
-        img.src = path;
-
-    })
-};
-
-preLoadMonitorFrames();
-
 // ====================================================================================
 // GAME STATE VARIABLES
 // ====================================================================================
@@ -154,14 +144,27 @@ elements.cam6Button.addEventListener("click",  () => switchCamera("6"));
 elements.cam7Button.addEventListener("click",  () => switchCamera("7"));
 
 // ====================================================================================
-// INITIALIZATION
+// BOOTING & PRE-LOADING
 // ====================================================================================
 
 function loadIn(){
+
+    preLoadAssets();
+    
     console.log("Load");
-    setTimeout(()=>{
-        elements.fadeBlackScreen.style.opacity = 0;
-    }, 100);
+    setTimeout(fadeFromBlack(3), 100);
+};
+
+function preLoadAssets(){
+    preLoadMonitorFrames();
+};
+
+function preLoadMonitorFrames(){
+    assets.monitorFrames.forEach(function(path){
+        const img = new Image();
+        img.src = path;
+
+    })
 };
 
 // ====================================================================================
@@ -170,44 +173,62 @@ function loadIn(){
 
 function pressPlay(){
     console.log("Play Pressed");
-    elements.fadeBlackScreen.style.transition = "opacity 2s"
+    
+    fadeToBlack(2);
+    
+    setTimeout(hideTitleScreen, 2000);
+
+    setTimeout(showNightText, 3000);
+
+    setTimeout(hideNightText, 6000);
+
+    setTimeout(startGame, 7000);
+};
+
+function fadeToBlack(seconds){
+    elements.fadeBlackScreen.style.transition = `opacity ${seconds}s`;
     elements.fadeBlackScreen.style.opacity = 1; //2s transition
     elements.fadeBlackScreen.style.pointerEvents = "auto";
+};
 
-    setTimeout(()=>{
-        elements.titleScreen.style.opacity = 0;
-        elements.titleScreen.style.pointerEvents = "none";
+function fadeFromBlack(seconds){
+    elements.fadeBlackScreen.style.transition = `opacity ${seconds}s`;
+    elements.fadeBlackScreen.style.opacity = 0;
+    elements.fadeBlackScreen.style.pointerEvents = "none";
+};
 
-    },2000);
+function hideTitleScreen(){
+    elements.titleScreen.style.opacity = 0;
+    elements.titleScreen.style.pointerEvents = "none";
+};
 
-    setTimeout(()=> {
+function showNightText(){
+    elements.nightText.style.opacity = 1;
+};
 
-        elements.nightText.style.opacity = 1;
-
-    }, 3000);
-
-    setTimeout(()=> {
-
-        elements.nightText.style.opacity = 0;
-
-    }, 6000);
-
-    setTimeout(()=> {
-
-        elements.fadeBlackScreen.style.transition = "opacity 7s";
-        elements.fadeBlackScreen.style.opacity = 0;
-        elements.fadeBlackScreen.style.pointerEvents = "none";
-
-        elements.gameWorld.style.opacity = 1;
-        elements.gameWorld.style.pointerEvents = "auto";
-        gameState.currentScreen = "game";
-
-    }, 7000);
+function hideNightText(){
+    elements.nightText.style.opacity = 0;
 };
 
 function pressOptions(){
     console.log("Options Pressed");
     // TODO LATER
+};
+
+// ====================================================================================
+// GAME
+// ====================================================================================
+
+function startGame(){
+    fadeFromBlack(7);
+    showGameWorld();
+
+    gameState.currentScreen = "game";
+};
+
+function showGameWorld(){
+    elements.gameWorld.style.opacity = 1;
+    elements.gameWorld.style.pointerEvents = "auto";
 };
 
 // ====================================================================================
@@ -451,6 +472,15 @@ function flipMonitorDown(){
     }, 40);
 };
 
+function mouseLeaveMonitorButtonHitboxEvent(){
+    gameState.mouseInMonitorButtonHitbox = "no";
+
+    if (gameState.monitorAnimationState == "finished"){
+        makeMonitorButtonVisible();
+    }
+
+};
+
 // ====================================================================================
 // CAMERAS
 // ====================================================================================
@@ -508,7 +538,6 @@ function toggleTestBonnieAppearance(){
     console.log("Bonnie: ", gameState.testBonnieAppearance);    
 }
 
-//TEMPORARY FUNCTION - REMOVE LATER
 function toggleTestChicaAppearance(){
     if (gameState.testChicaAppearance == "off") {
         gameState.testChicaAppearance = "on";
