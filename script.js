@@ -154,7 +154,7 @@ elements.cam6Button.addEventListener("click",  () => switchCamera("6"));
 elements.cam7Button.addEventListener("click",  () => switchCamera("7"));
 
 // ====================================================================================
-// MAIN GAME FUNCTIONS
+// INITIALIZATION
 // ====================================================================================
 
 function loadIn(){
@@ -162,7 +162,12 @@ function loadIn(){
     setTimeout(()=>{
         elements.fadeBlackScreen.style.opacity = 0;
     }, 100);
-}
+};
+
+// ====================================================================================
+// TITLE SCREEN
+// ====================================================================================
+
 function pressPlay(){
     console.log("Play Pressed");
     elements.fadeBlackScreen.style.transition = "opacity 2s"
@@ -202,41 +207,22 @@ function pressPlay(){
 
 function pressOptions(){
     console.log("Options Pressed");
-}
-
-function handleKeyboardInput(event){
-    if      (event.key.toLowerCase() == "b") {
-
-        toggleTestBonnieAppearance();
-    }
-    else if (event.key.toLowerCase() == "c") {
-
-        toggleTestChicaAppearance();
-    }
+    // TODO LATER
 };
+
+// ====================================================================================
+// DOORS
+// ====================================================================================
 
 function toggleLeftDoor(){
     if (gameState.leftDoorState == "open") {
 
-            closeDoor("left");
-            
-        }
-        else {
-
-            openDoor("left");
-            
-        }
-};
-
-function toggleLeftLight(){
-    if (gameState.leftLightState == "off") {
-
-        turnLightOn("left");
+        closeDoor("left");
         
     }
     else {
 
-        turnLightOff("left");
+        openDoor("left");
         
     }
 };
@@ -254,69 +240,6 @@ function toggleRightDoor(){
     }
 };
 
-function toggleRightLight(){
-    if (gameState.rightLightState == "off") {
-
-        turnLightOn("right");
-
-    }
-    else {
-
-        turnLightOff("right");
-        
-    }
-};
-
-function toggleMonitor(){
-
-    gameState.mouseInMonitorButtonHitbox = "yes"
-
-    if (gameState.monitorAnimationState == "inProgress") return;
-
-    makeMonitorButtonHidden();
-
-    if (gameState.monitorStatus == "down") {
-
-        flipMonitorUp();
-
-    }
-    else {
-        
-        flipMonitorDown();
-    }
-};
-
-function mouseLeaveMonitorButtonHitboxEvent(){
-    gameState.mouseInMonitorButtonHitbox = "no";
-
-    if (gameState.monitorAnimationState == "finished"){
-        makeMonitorButtonVisible();
-    }
-
-};
-
-function switchCamera(newCamera){
-
-    console.log(newCamera);     // TODO REMOVE LATER
-
-    // Turn current camera button off
-    setCameraButton(gameState.currentCamera, "off");
-    
-    // Turn new camera button on
-    setCameraButton(newCamera, "on")
-
-    // Update the current camera
-    gameState.currentCamera = newCamera;
-
-    //Change to new camera's image
-    setCameraBackground(newCamera);
-};
-
-
-// ====================================================================================
-// HELPER FUNCTIONS
-// ====================================================================================
-
 function closeDoor(side){
     if(side == "left"){
         elements.leftDoorButton.src = assets.leftDoorButton.on;
@@ -331,7 +254,7 @@ function closeDoor(side){
         elements.rightDoor.style.top = "158px";
 
     }
-}
+};
 
 function openDoor(side){
     if(side == "left"){
@@ -346,7 +269,37 @@ function openDoor(side){
 
         elements.rightDoor.style.top = "-354px";
     }
-}
+};
+
+// ====================================================================================
+// LIGHTS
+// ====================================================================================
+
+function toggleLeftLight(){
+    if (gameState.leftLightState == "off") {
+
+        turnLightOn("left");
+        
+    }
+    else {
+
+        turnLightOff("left");
+        
+    }
+};
+
+function toggleRightLight(){
+    if (gameState.rightLightState == "off") {
+
+        turnLightOn("right");
+
+    }
+    else {
+
+        turnLightOff("right");
+        
+    }
+};
 
 function turnLightOff(side){
 
@@ -404,6 +357,29 @@ function turnLightOn(side){
         }
     }
 
+};
+
+// ====================================================================================
+// MONITOR
+// ====================================================================================
+
+function toggleMonitor(){
+
+    gameState.mouseInMonitorButtonHitbox = "yes"
+
+    if (gameState.monitorAnimationState == "inProgress") return;
+
+    makeMonitorButtonHidden();
+
+    if (gameState.monitorStatus == "down") {
+
+        flipMonitorUp();
+
+    }
+    else {
+        
+        flipMonitorDown();
+    }
 };
 
 function makeMonitorButtonHidden(){
@@ -475,6 +451,27 @@ function flipMonitorDown(){
     }, 40);
 };
 
+// ====================================================================================
+// CAMERAS
+// ====================================================================================
+
+function switchCamera(newCamera){
+
+    console.log(newCamera);     // TODO REMOVE LATER
+
+    // Turn current camera button off
+    setCameraButton(gameState.currentCamera, "off");
+    
+    // Turn new camera button on
+    setCameraButton(newCamera, "on")
+
+    // Update the current camera
+    gameState.currentCamera = newCamera;
+
+    //Change to new camera's image
+    setCameraBackground(newCamera);
+};
+
 function setCameraButton(camera, state){
     //Changes the path of the respective camera button using string manipulation
     elements[`cam${camera}Button`].src = `images/monitor/cam-${camera}-button-${state}.png`;
@@ -486,7 +483,21 @@ function setCameraBackground(camera){
 
 };
 
-//TEMPORARY FUNCTION - REMOVE LATER
+// ====================================================================================
+// DEBUGGING / TEMPORARY FUNCTIONS
+// ====================================================================================
+
+function handleKeyboardInput(event){
+    if      (event.key.toLowerCase() == "b") {
+
+        toggleTestBonnieAppearance();
+    }
+    else if (event.key.toLowerCase() == "c") {
+
+        toggleTestChicaAppearance();
+    }
+};
+
 function toggleTestBonnieAppearance(){
     if (gameState.testBonnieAppearance == "off") {
         gameState.testBonnieAppearance = "on";

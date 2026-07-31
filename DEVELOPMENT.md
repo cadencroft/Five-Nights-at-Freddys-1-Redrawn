@@ -85,6 +85,9 @@ I am a Software Engineering and Data Science Mathematics student at IUP, and I a
 - Added fade in effect when the game is opened.
 - Replaced `office-background.png` with a new version that fixed a visual error.
 
+### 7/31/26
+- Refactored `script.js` to better organize functions by moving functions from "main" and "helper" categories to instead by organized by purpose, such as "initialization", "doors", "lights", etc.
+
 ## **Problems and Solutions**
 
 ### Button Sprite Hitbox Overlap 7/9/26
