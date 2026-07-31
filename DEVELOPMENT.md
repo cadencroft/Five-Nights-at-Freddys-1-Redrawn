@@ -77,6 +77,10 @@ I am a Software Engineering and Data Science Mathematics student at IUP, and I a
 - Added a system to hide the monitor button sprite while the cursor is hovering over the monitor button hitbox, and for the button sprite to reappear once the cursor leaves the hitbox. Includes changes to `toggleMonitor`, `flipMonitorUp`, and `flipMonitorDown` and also includes new functions `mouseLeaveMonitorButtonHitboxEvent`, `makeMonitorButtonHidden`, and `makeMonitorButtonVisible`.
 - Added comments to show what the possible states are for the `gameState` variables.
 
+### 7/30/26
+- Added title screen background along with "Play" and "Options" buttons.
+- Added functionality to make the Play and Options button scale up when hovered.
+
 ## **Problems and Solutions**
 
 ### Button Sprite Hitbox Overlap 7/9/26
@@ -106,6 +110,8 @@ I am a Software Engineering and Data Science Mathematics student at IUP, and I a
 
 ### Monitor Button Glitchy and Too Sensitive
 **Problem:** When the mouse hovers over the monitor button, the animation starts playing which covers the mouse button. Then after the animation, the z-index of the mouse button is increased to overlay it overtop of the monitor interface. If the player keeps their mouse on the button during this time, it will activate the button and close the monitor prematurely.
+
+**Solution:** I added a hitbox around the button to act as the input instead of the actual button sprite. I then switch the monitor open/close functionality from the sprite to the hitbox, and made it so when the cursor hovers over the hitbox, it activates the animation and hides the button sprite. Furthermore, the button sprite will only reappear once the cursor leaves the hitbox. This fixes the issue of if the player leaves the mouse over the button sprite after the animation finishes.
 
 ## **Needs Fixed / Changed**
 - [ ] Bonnie and Chica's appearance in the office are controlled by "b" and "c" instead of game logic

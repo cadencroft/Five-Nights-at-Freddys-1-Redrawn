@@ -75,6 +75,9 @@ const gameState = {
 
 const elements = {
 
+    playButton:             document.getElementById("play-button"),
+    optionsButton:          document.getElementById("options-button"),
+
     leftDoorButton:         document.getElementById("left-door-button"),
     leftLightButton:        document.getElementById("left-light-button"),
     leftDoor:               document.getElementById("left-door"),
@@ -116,6 +119,9 @@ const elements = {
 
 document.addEventListener("keydown", handleKeyboardInput);
 
+elements.playButton.addEventListener("click", pressPlay);
+elements.optionsButton.addEventListener("click", pressOptions);
+
 elements.leftDoorButton.addEventListener("click", toggleLeftDoor);
 elements.leftLightButton.addEventListener("click", toggleLeftLight);
 
@@ -140,6 +146,14 @@ elements.cam7Button.addEventListener("click",  () => switchCamera("7"));
 // ====================================================================================
 // MAIN GAME FUNCTIONS
 // ====================================================================================
+
+function pressPlay(){
+    console.log("Play Pressed");
+};
+
+function pressOptions(){
+    console.log("Options Pressed");
+}
 
 function handleKeyboardInput(event){
     if      (event.key.toLowerCase() == "b") {
@@ -380,7 +394,6 @@ function flipMonitorUp(){
                 makeMonitorButtonVisible();
             }
         }
-
     }, 50);
 
 };
