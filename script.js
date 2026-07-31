@@ -202,6 +202,11 @@ function hideTitleScreen(){
     elements.titleScreen.style.pointerEvents = "none";
 };
 
+function showTitleScreen(){
+    elements.titleScreen.style.opacity = 1;
+    elements.titleScreen.style.pointerEvents = "auto";
+};
+
 function showNightText(){
     elements.nightText.style.opacity = 1;
 };

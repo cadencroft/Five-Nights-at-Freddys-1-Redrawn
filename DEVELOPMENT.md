@@ -91,6 +91,7 @@ I am a Software Engineering and Data Science Mathematics student at IUP, and I a
 - Function `startGame` acts as the start to the game and uses `fadeFromBlack` and `showGameWorld`.
 - Functions `fadeToBlack` and `fadeFromBlack` now have a parameter to specify how many seconds the fade lasts.
 - Function `loadIn` now preloads the assets using `preLoadAssets` function, along with fading in from black.
+- Added `showTitleScreen` function.
 
 ## **Problems and Solutions**
 
