@@ -92,6 +92,7 @@ I am a Software Engineering and Data Science Mathematics student at IUP, and I a
 - Functions `fadeToBlack` and `fadeFromBlack` now have a parameter to specify how many seconds the fade lasts.
 - Function `loadIn` now preloads the assets using `preLoadAssets` function, along with fading in from black.
 - Added `showTitleScreen` function.
+- Refactored `startGame` to call `initializeNight` which calls `initializeDoors`, `initializeLights`, `initializeMonitor`, and `initializeCamera`, which set the state of all the game elements to default while bypassing other things such as sound effects.
 
 ## **Problems and Solutions**
 

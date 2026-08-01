@@ -152,7 +152,7 @@ function loadIn(){
     preLoadAssets();
     
     console.log("Load");
-    setTimeout(fadeFromBlack(3), 100);
+    setTimeout(() => fadeFromBlack(3), 100);
 };
 
 function preLoadAssets(){
@@ -205,6 +205,8 @@ function hideTitleScreen(){
 function showTitleScreen(){
     elements.titleScreen.style.opacity = 1;
     elements.titleScreen.style.pointerEvents = "auto";
+
+    gameState.currentScreen = "title";
 };
 
 function showNightText(){
@@ -225,15 +227,32 @@ function pressOptions(){
 // ====================================================================================
 
 function startGame(){
-    fadeFromBlack(7);
+
+    initializeNight();
+    
     showGameWorld();
 
-    gameState.currentScreen = "game";
+    fadeFromBlack(7);
+
 };
 
 function showGameWorld(){
     elements.gameWorld.style.opacity = 1;
     elements.gameWorld.style.pointerEvents = "auto";
+
+    gameState.currentScreen = "game";
+};
+
+function initializeNight(){
+
+    initializeDoors();
+
+    initializeLights();
+
+    initializeMonitor();
+
+    initializeCamera();
+
 };
 
 // ====================================================================================
@@ -297,6 +316,11 @@ function openDoor(side){
     }
 };
 
+function initializeDoors(){
+    openDoor("left");
+    openDoor("right");
+};
+
 // ====================================================================================
 // LIGHTS
 // ====================================================================================
@@ -347,7 +371,7 @@ function turnLightOff(side){
         elements.rightDoorwayLight.style.opacity = 0;
         elements.rightWindowLight.style.opacity = 0;
 
-        //This statment is for the Bonnie test, it can be removed eventually
+        //This statment is for the Chica test, it can be removed eventually
         elements.rightWindowChica.style.opacity = 0;    //REMOVE LATER
     }
 };
@@ -374,7 +398,7 @@ function turnLightOn(side){
 
         elements.rightDoorwayLight.style.opacity = 1;
 
-        //This if statment is for the Bonnie test, it can be removed eventually
+        //This if statment is for the Chica test, it can be removed eventually
         if (gameState.testChicaAppearance == "off") {
             elements.rightWindowLight.style.opacity = 1;
         }
@@ -383,6 +407,11 @@ function turnLightOn(side){
         }
     }
 
+};
+
+function initializeLights(){
+    turnLightOff("left");
+    turnLightOff("right");
 };
 
 // ====================================================================================
@@ -486,6 +515,21 @@ function mouseLeaveMonitorButtonHitboxEvent(){
 
 };
 
+function initializeMonitor(){
+    gameState.monitorStatus = "down";
+    gameState.monitorAnimationState = "finished";
+    gameState.mouseInMonitorButtonHitbox = "no";
+
+    elements.monitor.src = assets.monitorFrames[0];
+    elements.monitor.style.pointerEvents = "none";
+
+    elements.cameraMap.style.opacity = 0;
+    elements.cameraButtonsDiv.style.opacity = 0;
+    elements.cameraBackground.style.opacity = 0;
+
+    makeMonitorButtonVisible();
+};
+
 // ====================================================================================
 // CAMERAS
 // ====================================================================================
@@ -497,14 +541,14 @@ function switchCamera(newCamera){
     // Turn current camera button off
     setCameraButton(gameState.currentCamera, "off");
     
-    // Turn new camera button on
-    setCameraButton(newCamera, "on")
-
     // Update the current camera
     gameState.currentCamera = newCamera;
 
+    // Turn new camera button on
+    setCameraButton(gameState.currentCamera, "on")
+
     //Change to new camera's image
-    setCameraBackground(newCamera);
+    setCameraBackground(gameState.currentCamera);
 };
 
 function setCameraButton(camera, state){
@@ -516,6 +560,19 @@ function setCameraButton(camera, state){
 function setCameraBackground(camera){
     elements.cameraBackground.src = `images/monitor/cam-${camera}.png`;
 
+};
+
+function initializeCamera(){
+
+    const startingCamera = "1a";
+
+    setCameraButton(gameState.currentCamera, "off");
+
+    gameState.currentCamera = startingCamera;
+
+    setCameraButton(gameState.currentCamera, "on");
+
+    setCameraBackground(gameState.currentCamera);
 };
 
 // ====================================================================================
