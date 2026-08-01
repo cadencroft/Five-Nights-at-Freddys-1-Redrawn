@@ -447,12 +447,22 @@ function makeMonitorButtonVisible(){
 
 function flipMonitorUp(){
 
-    gameState.monitorAnimationState = "inProgress";
+    elements.monitor.style.pointerEvents = "auto";
+
     //Force door lights off
     turnLightOff("left");
     turnLightOff("right");
 
-    elements.monitor.style.pointerEvents = "all";
+    // showCameraUI is sent as a callback to play when the animation is finished
+    playMonitorUpAnimation(showCameraUI);
+
+ 
+};
+
+function playMonitorUpAnimation(callback){
+
+    gameState.monitorAnimationState = "inProgress";
+
     let monitorFrame = 1;
 
     let monitorSequence = setInterval(function () {
@@ -461,32 +471,32 @@ function flipMonitorUp(){
         monitorFrame++;
 
         if (monitorFrame > 9) {
-            clearInterval(monitorSequence);
-            gameState.monitorStatus = "up";
-            elements.cameraMap.style.opacity = 1;
-            elements.cameraButtonsDiv.style.opacity = 1;
 
-            elements.cameraBackground.style.opacity = 0.4
+            clearInterval(monitorSequence);
 
             gameState.monitorAnimationState = "finished";
+            gameState.monitorStatus = "up";
 
-            if(gameState.mouseInMonitorButtonHitbox == "no"){
-                makeMonitorButtonVisible();
-            }
+            // Runs the function that was passed in after the animation finishes 
+            callback();
         }
     }, 40);
-
 };
 
 function flipMonitorDown(){
 
+    hideCameraUI()
+
+    playMonitorDownAnimation();
+    
+};
+
+function playMonitorDownAnimation(){
+    
     gameState.monitorAnimationState = "inProgress";
 
     let monitorFrame = 8;
-    elements.cameraMap.style.opacity = 0;
-    elements.cameraButtonsDiv.style.opacity = 0;
-    elements.cameraBackground.style.opacity = 0;
-
+    
     let monitorSequence = setInterval(function () {
         elements.monitor.src = assets.monitorFrames[monitorFrame];
 
@@ -494,12 +504,12 @@ function flipMonitorDown(){
 
         if (monitorFrame < 0) {
             clearInterval(monitorSequence);
+
+            gameState.monitorAnimationState = "finished";
             gameState.monitorStatus = "down";
             elements.monitor.style.pointerEvents = "none";
 
-            gameState.monitorAnimationState = "finished";
-
-            if(gameState.mouseInMonitorButtonHitbox == "no"){
+            if(gameState.currentScreen == "game" && gameState.mouseInMonitorButtonHitbox == "no"){
                 makeMonitorButtonVisible();
             }
         }
@@ -533,6 +543,22 @@ function initializeMonitor(){
 //  ====================================================================================
 //* CAMERAS
 //  ====================================================================================
+
+function showCameraUI(){
+    elements.cameraMap.style.opacity = 1;
+    elements.cameraButtonsDiv.style.opacity = 1;
+    elements.cameraBackground.style.opacity = 0.4;  
+    
+    if(gameState.mouseInMonitorButtonHitbox == "no"){
+        makeMonitorButtonVisible();
+    }  
+};
+
+function hideCameraUI(){
+    elements.cameraMap.style.opacity = 0;
+    elements.cameraButtonsDiv.style.opacity = 0;
+    elements.cameraBackground.style.opacity = 0;
+};
 
 function switchCamera(newCamera){
 

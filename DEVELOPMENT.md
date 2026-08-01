@@ -96,6 +96,7 @@ I am a Software Engineering and Data Science Mathematics student at IUP, and I a
 - Refactored `style.css` to better organize CSS rules by category of their ids.
 - Changed comments to utilize the Better Comments extension.
 - Added debug tool to reload the page when "r" is pressed.
+- Refactored `flipMonitorUp` and `flipMonitorDown` to call helper functions `playMonitorUpAnimation` and `playMonitorDownAnimation` respectively, so that the monitor animations can be reused elsewhere (such as for the Night Select and Option menus). `PlayMonitorUpAniamtion` also accepts the `showCameraUI` function, which will run after the animation is finished.
 
 ## **Problems and Solutions**
 
@@ -124,10 +125,15 @@ I am a Software Engineering and Data Science Mathematics student at IUP, and I a
 
 **Solution:** The reason for the the animation being different is that GitHub Pages had to request the images, while live server already had them. When GitHub pages would fetch an image, it would get interupted by the next frame's request so that is what caused them to be (canceled). To fix this, I added a preloading function, which goes through each frame and preloads them into an Image object so that when its time to do the animation, the frames do not need to be retrieved.
 
-### Monitor Button Glitchy and Too Sensitive
+### Monitor Button Glitchy and Too Sensitive 7/28/26
 **Problem:** When the mouse hovers over the monitor button, the animation starts playing which covers the mouse button. Then after the animation, the z-index of the mouse button is increased to overlay it overtop of the monitor interface. If the player keeps their mouse on the button during this time, it will activate the button and close the monitor prematurely.
 
 **Solution:** I added a hitbox around the button to act as the input instead of the actual button sprite. I then switch the monitor open/close functionality from the sprite to the hitbox, and made it so when the cursor hovers over the hitbox, it activates the animation and hides the button sprite. Furthermore, the button sprite will only reappear once the cursor leaves the hitbox. This fixes the issue of if the player leaves the mouse over the button sprite after the animation finishes.
+
+### Camera UI Appears Before Monitor Animation Finishes 7/21/26
+**Problem:** When the `flipMonitorUp` function is run, it would call the `playMonitorAnimationUp` function and then the next line call `showCameraUI`. However, the camera UI would appear before the animation was finished.
+
+**Solution:** I used a callback function, which means that I passed the `showCameraUI` function into the `playMonitorAnimationUp` function so it will run it after the animation is done. This also allows me to pass in other functions to make other UI appear after the animation finishes (such as a Night Select menu or Options menu).
 
 ## **Needs Fixed / Changed**
 - [ ] Bonnie and Chica's appearance in the office are controlled by "b" and "c" instead of game logic
