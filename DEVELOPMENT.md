@@ -93,6 +93,8 @@ I am a Software Engineering and Data Science Mathematics student at IUP, and I a
 - Function `loadIn` now preloads the assets using `preLoadAssets` function, along with fading in from black.
 - Added `showTitleScreen` function.
 - Refactored `startGame` to call `initializeNight` which calls `initializeDoors`, `initializeLights`, `initializeMonitor`, and `initializeCamera`, which set the state of all the game elements to default while bypassing other things such as sound effects.
+- Refactored `style.css` to better organize CSS rules by category of their ids.
+- Changed comments to utilize the Better Comments extension.
 
 ## **Problems and Solutions**
 

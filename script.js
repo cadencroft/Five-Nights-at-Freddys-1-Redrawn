@@ -1,6 +1,6 @@
-// ====================================================================================
-// ASSET LOADING
-// ====================================================================================
+//  ====================================================================================
+//* ASSET LOADING
+//  ====================================================================================
 
 const assets = {
     leftDoorButton: {
@@ -38,7 +38,7 @@ const assets = {
 };
 
 // ====================================================================================
-// GAME STATE VARIABLES
+// * GAME STATE VARIABLES
 // ====================================================================================
 
 const gameState = {
@@ -52,8 +52,8 @@ const gameState = {
     leftLightState:                 "off",          // off | on
     rightLightState:                "off",          // off | on
 
-    testBonnieAppearance:           "off",          // off | on     REMOVE LATER AND REPLACE WITH bonnieLocation
-    testChicaAppearance:            "off",          // off | on     REMOVE LATER AND REPLACE WITH chicaLocation
+    testBonnieAppearance:           "off",          // off | on     //TODO REMOVE LATER
+    testChicaAppearance:            "off",          // off | on     //TODO REMOVE LATER 
 
     monitorStatus:                  "down",         // down | up
     monitorAnimationState:          "finished",     // finished | inProgress
@@ -62,9 +62,9 @@ const gameState = {
     currentCamera:                  "1a"            // 1a | 1b | 1c | 2a | 2b | 3 | 4a | 4b | 5 | 6 | 7
 }
 
-// ====================================================================================
-// HTML ELEMENT REFERENCES
-// ====================================================================================
+//  ====================================================================================
+//* HTML ELEMENT REFERENCES
+//  ====================================================================================
 
 const elements = {
 
@@ -112,9 +112,9 @@ const elements = {
     cameraBackground:       document.getElementById("camera-background")
 }
 
-// ====================================================================================
-// EVENT LISTENERS
-// ====================================================================================
+//  ====================================================================================
+//* EVENT LISTENERS
+//  ====================================================================================
 
 window.addEventListener("load", loadIn);
 document.addEventListener("keydown", handleKeyboardInput);
@@ -143,9 +143,9 @@ elements.cam5Button.addEventListener("click",  () => switchCamera("5"));
 elements.cam6Button.addEventListener("click",  () => switchCamera("6"));
 elements.cam7Button.addEventListener("click",  () => switchCamera("7"));
 
-// ====================================================================================
-// BOOTING & PRE-LOADING
-// ====================================================================================
+//  ====================================================================================
+//* BOOTING & PRE-LOADING
+//  ====================================================================================
 
 function loadIn(){
 
@@ -167,9 +167,9 @@ function preLoadMonitorFrames(){
     })
 };
 
-// ====================================================================================
-// TITLE SCREEN
-// ====================================================================================
+//  ====================================================================================
+//* TITLE SCREEN
+//  ====================================================================================
 
 function pressPlay(){
     console.log("Play Pressed");
@@ -222,9 +222,9 @@ function pressOptions(){
     // TODO LATER
 };
 
-// ====================================================================================
-// GAME
-// ====================================================================================
+//  ====================================================================================
+//* GAME
+//  ====================================================================================
 
 function startGame(){
 
@@ -255,9 +255,9 @@ function initializeNight(){
 
 };
 
-// ====================================================================================
-// DOORS
-// ====================================================================================
+//  ====================================================================================
+//* DOORS
+//  ====================================================================================
 
 function toggleLeftDoor(){
     if (gameState.leftDoorState == "open") {
@@ -321,9 +321,9 @@ function initializeDoors(){
     openDoor("right");
 };
 
-// ====================================================================================
-// LIGHTS
-// ====================================================================================
+//  ====================================================================================
+//* LIGHTS
+//  ====================================================================================
 
 function toggleLeftLight(){
     if (gameState.leftLightState == "off") {
@@ -360,7 +360,7 @@ function turnLightOff(side){
         elements.leftDoorwayLight.style.opacity = 0;
         elements.leftWindowLight.style.opacity = 0;
 
-        //This statment is for the Bonnie test, it can be removed eventually
+        // TODO This statment is for the Bonnie test, it can be removed eventually
         elements.leftDoorwayBonnie.style.opacity = 0;   //REMOVE LATER
         elements.leftWindowBonnie.style.opacity = 0;    //REMOVE LATER
     }
@@ -371,7 +371,7 @@ function turnLightOff(side){
         elements.rightDoorwayLight.style.opacity = 0;
         elements.rightWindowLight.style.opacity = 0;
 
-        //This statment is for the Chica test, it can be removed eventually
+        // TODO This statment is for the Chica test, it can be removed eventually
         elements.rightWindowChica.style.opacity = 0;    //REMOVE LATER
     }
 };
@@ -382,14 +382,14 @@ function turnLightOn(side){
         elements.leftLightButton.src = assets.leftLightButton.on;
         gameState.leftLightState = "on";
 
-        //This if statment is for the Bonnie test, it can be removed eventually
+        //TODO This if statment is for the Bonnie test, it can be removed eventually
         if (gameState.testBonnieAppearance == "off") {
             elements.leftDoorwayLight.style.opacity = 1;
             elements.leftWindowLight.style.opacity = 1;
         }
         else {
-            elements.leftDoorwayBonnie.style.opacity = 1;   //REMOVE LATER
-            elements.leftWindowBonnie.style.opacity = 1;    //REMOVE LATER
+            elements.leftDoorwayBonnie.style.opacity = 1;   //TODO REMOVE LATER
+            elements.leftWindowBonnie.style.opacity = 1;    //TODO REMOVE LATER
         }
     }
     else{
@@ -398,12 +398,12 @@ function turnLightOn(side){
 
         elements.rightDoorwayLight.style.opacity = 1;
 
-        //This if statment is for the Chica test, it can be removed eventually
+        //TODO This if statment is for the Chica test, it can be removed eventually
         if (gameState.testChicaAppearance == "off") {
             elements.rightWindowLight.style.opacity = 1;
         }
         else {
-            elements.rightWindowChica.style.opacity = 1;    //REMOVE LATER
+            elements.rightWindowChica.style.opacity = 1;    //TODO REMOVE LATER
         }
     }
 
@@ -414,9 +414,9 @@ function initializeLights(){
     turnLightOff("right");
 };
 
-// ====================================================================================
-// MONITOR
-// ====================================================================================
+//  ====================================================================================
+//* MONITOR
+//  ====================================================================================
 
 function toggleMonitor(){
 
@@ -530,9 +530,9 @@ function initializeMonitor(){
     makeMonitorButtonVisible();
 };
 
-// ====================================================================================
-// CAMERAS
-// ====================================================================================
+//  ====================================================================================
+//* CAMERAS
+//  ====================================================================================
 
 function switchCamera(newCamera){
 
@@ -575,9 +575,9 @@ function initializeCamera(){
     setCameraBackground(gameState.currentCamera);
 };
 
-// ====================================================================================
-// DEBUGGING / TEMPORARY FUNCTIONS
-// ====================================================================================
+//  ====================================================================================
+//* DEBUGGING / TEMPORARY FUNCTIONS
+//  ====================================================================================
 
 function handleKeyboardInput(event){
     if      (event.key.toLowerCase() == "b") {
