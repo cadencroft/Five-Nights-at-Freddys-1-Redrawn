@@ -107,6 +107,8 @@ I am a Software Engineering and Data Science Mathematics student at IUP, and I a
 - Refactored `script.js` to better handle switching screens. There is now a function `switchToScreen(newScreen)` that includes generic functions `hideScreen(currentScreen)` and `showScreen(newScreen)`. These generic functions replace the repetitive functions `showTitleScreen`, `hideTitleScreen`, `showGameWorld`, `hideGameWorld`, etc. A dictionary called `screens` hold each of the possible screens.
 - Added functionality to make the Play button transition to the night select screen using a monitor up animation, and a back button.
 - Added functionality to make the Options button transition to the options menu using a monitor up animation, and a back button. 
+- Added functionaltiy to transition into the game when the desired night is selected. Each eventListener directs to `selectNight(night)`, which sets the current night and then runs `startGame()`, which plays the fade in/out animation, displays the selected night text, initializes the game, and switches to the gameWorld.
+- The current selected night now displays depending on what the user selects.
 
 ## **Problems and Solutions**
 
