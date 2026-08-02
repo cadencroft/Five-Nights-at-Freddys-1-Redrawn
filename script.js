@@ -194,12 +194,48 @@ elements.cam6Button.addEventListener("click",  () => switchCamera("6"));
 elements.cam7Button.addEventListener("click",  () => switchCamera("7"));
 
 //  ====================================================================================
+//* LOCAL STORAGE
+//  ====================================================================================
+
+function saveGameData(){
+    localStorage.setItem("highestNightReached", gameState.highestNightReached);
+
+    console.log("Saved highest night:", gameState.highestNightReached);
+};
+
+function loadGameData(){
+    const savedHighestNight = localStorage.getItem("highestNightReached");
+    console.log(savedHighestNight)
+
+    if(savedHighestNight != null){
+        gameState.highestNightReached = Number(savedHighestNight);
+        console.log("Loaded highest night:", gameState.highestNightReached);
+    }
+    else{
+        console.log("Nothing to load");
+    }    
+};
+
+function resetGameData(){
+    localStorage.removeItem("highestNightReached");
+
+    gameState.highestNightReached = 1;
+    gameState.currentNight = 1;
+
+    console.log("Game data reset");
+
+};
+
+
+//  ====================================================================================
 //* BOOTING & PRE-LOADING
 //  ====================================================================================
 
 function loadIn(){
 
     preLoadAssets();
+
+    loadGameData()
     
     console.log("Load");
     setTimeout(() => fadeFromBlack(3), 100);
@@ -790,6 +826,14 @@ function handleKeyboardInput(event){
 
     else if (event.key.toLowerCase() == "r"){
         location.reload();
+    }
+
+    else if (event.key.toLowerCase() == "s"){
+        saveGameData();
+    }
+
+    else if (event.key.toLowerCase() == "x"){
+        resetGameData();
     }
 
     else if (event.key.toLowerCase() == "1"){
