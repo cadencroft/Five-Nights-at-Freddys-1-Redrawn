@@ -92,10 +92,12 @@ const elements = {
     rightWindowLight:       document.getElementById("right-window-light"),
     rightWindowChica:       document.getElementById("right-window-chica"),
 
+    monitorUI:              document.getElementById("monitor-ui"),
     monitorButton:          document.getElementById("monitor-button"),
     monitorButtonHitbox:    document.getElementById("monitor-button-hitbox"),
-    monitor:                document.getElementById("monitor"),
+    monitorAnimation:       document.getElementById("monitor-animation"),
     
+    cameraUI:               document.getElementById("camera-ui"),
     cameraMap:              document.getElementById("camera-map"),
     cameraButtonsDiv:       document.getElementById("camera-buttons-div"),
     cam1aButton:            document.getElementById("cam-1a-button"),
@@ -420,7 +422,7 @@ function initializeLights(){
 
 function toggleMonitor(){
 
-    gameState.mouseInMonitorButtonHitbox = "yes"
+    gameState.mouseInMonitorButtonHitbox = "yes";
 
     if (gameState.monitorAnimationState == "inProgress") return;
 
@@ -443,11 +445,10 @@ function makeMonitorButtonHidden(){
 
 function makeMonitorButtonVisible(){
     elements.monitorButton.style.opacity = 1;
+    elements.monitorButtonHitbox.style.pointerEvents = "auto";
 };
 
 function flipMonitorUp(){
-
-    elements.monitor.style.pointerEvents = "auto";
 
     //Force door lights off
     turnLightOff("left");
@@ -456,7 +457,6 @@ function flipMonitorUp(){
     // showCameraUI is sent as a callback to play when the animation is finished
     playMonitorUpAnimation(showCameraUI);
 
- 
 };
 
 function playMonitorUpAnimation(callback){
@@ -466,7 +466,7 @@ function playMonitorUpAnimation(callback){
     let monitorFrame = 1;
 
     let monitorSequence = setInterval(function () {
-        elements.monitor.src = assets.monitorFrames[monitorFrame];
+        elements.monitorAnimation.src = assets.monitorFrames[monitorFrame];
 
         monitorFrame++;
 
@@ -476,15 +476,17 @@ function playMonitorUpAnimation(callback){
 
             gameState.monitorAnimationState = "finished";
             gameState.monitorStatus = "up";
-
+  
             // Runs the function that was passed in after the animation finishes 
-            callback();
+            if(callback){
+                callback();
+            }
         }
     }, 40);
 };
 
 function flipMonitorDown(){
-
+    
     hideCameraUI()
 
     playMonitorDownAnimation();
@@ -498,7 +500,7 @@ function playMonitorDownAnimation(){
     let monitorFrame = 8;
     
     let monitorSequence = setInterval(function () {
-        elements.monitor.src = assets.monitorFrames[monitorFrame];
+        elements.monitorAnimation.src = assets.monitorFrames[monitorFrame];
 
         monitorFrame--;
 
@@ -507,7 +509,6 @@ function playMonitorDownAnimation(){
 
             gameState.monitorAnimationState = "finished";
             gameState.monitorStatus = "down";
-            elements.monitor.style.pointerEvents = "none";
 
             if(gameState.currentScreen == "game" && gameState.mouseInMonitorButtonHitbox == "no"){
                 makeMonitorButtonVisible();
@@ -530,8 +531,7 @@ function initializeMonitor(){
     gameState.monitorAnimationState = "finished";
     gameState.mouseInMonitorButtonHitbox = "no";
 
-    elements.monitor.src = assets.monitorFrames[0];
-    elements.monitor.style.pointerEvents = "none";
+    elements.monitorAnimation.src = assets.monitorFrames[0];
 
     elements.cameraMap.style.opacity = 0;
     elements.cameraButtonsDiv.style.opacity = 0;
@@ -545,6 +545,8 @@ function initializeMonitor(){
 //  ====================================================================================
 
 function showCameraUI(){
+    elements.cameraUI.style.pointerEvents = "auto";
+
     elements.cameraMap.style.opacity = 1;
     elements.cameraButtonsDiv.style.opacity = 1;
     elements.cameraBackground.style.opacity = 0.4;  
@@ -555,6 +557,8 @@ function showCameraUI(){
 };
 
 function hideCameraUI(){
+    elements.cameraUI.style.pointerEvents = "none";
+
     elements.cameraMap.style.opacity = 0;
     elements.cameraButtonsDiv.style.opacity = 0;
     elements.cameraBackground.style.opacity = 0;

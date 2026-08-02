@@ -9,18 +9,9 @@
     <div id="game-wrapper">
         <div id="viewport">
 
-            <div id="fade-black-screen">
-                <img id="night-text" src="images/misc/night1-text.png" alt="night-text">
-            </div>
-
-            <div id="title-screen">
-                <img id="title-background" src="images/title/title-background.png" alt="title-background">
-                <img id="play-button" src="images/title/play-button.png" alt="play-button">
-                <img id="options-button" src="images/title/options-button.png" alt="options-button">
-            </div>
 
             <div id="game-world">
-                <img src="images/background/office-background.png" alt="office-backgrond">
+                <img id="office-background" src="images/background/office-background.png" alt="office-backgrond">
 
                 <img id="left-door-button" src="images/doors-buttons/left-door-button-off.png" alt="left-door-button-off">
                 <img id="left-light-button" src="images/doors-buttons/left-light-button-off.png" alt="left-light-button-off">
@@ -41,37 +32,59 @@
                 <img id="left-window-bonnie" src="images/doors-buttons/left-window-bonnie.png" alt="left-window-bonnie">
                 <img id="right-window-light" src="images/doors-buttons/right-window-light.png" alt="right-window-light">
                 <img id="right-window-chica" src="images/doors-buttons/right-window-chica.png" alt="right-window-chica">
-
-                <img id="monitor" src="images/monitor/monitor-frame0.png" alt="monitor">
-
-                <img id="camera-map" src="images/monitor/camera-map.png" alt="camera-map">
-                <div id="camera-buttons-div">
-                    <img id="cam-1a-button" src="images/monitor/cam-1a-button-on.png" alt="cam-1a-button">
-                    <img id="cam-1b-button" src="images/monitor/cam-1b-button-off.png" alt="cam-1b-button">
-                    <img id="cam-1c-button" src="images/monitor/cam-1c-button-off.png" alt="cam-1c-button">
-                    <img id="cam-2a-button" src="images/monitor/cam-2a-button-off.png" alt="cam-2a-button">
-                    <img id="cam-2b-button" src="images/monitor/cam-2b-button-off.png" alt="cam-2b-button">
-                    <img id="cam-3-button"  src="images/monitor/cam-3-button-off.png" alt="cam-3-button">
-                    <img id="cam-4a-button" src="images/monitor/cam-4a-button-off.png" alt="cam-4a-button">
-                    <img id="cam-4b-button" src="images/monitor/cam-4b-button-off.png" alt="cam-4b-button">
-                    <img id="cam-5-button"  src="images/monitor/cam-5-button-off.png" alt="cam-5-button">
-                    <img id="cam-6-button"  src="images/monitor/cam-6-button-off.png" alt="cam-6-button">
-                    <img id="cam-7-button"  src="images/monitor/cam-7-button-off.png" alt="cam-7-button">
-
-                </div> <!-- end camera-buttons-div -->
-                
-                <img id="camera-background" src="images/monitor/cam-1a.png" alt="camera-background">
-
             </div> <!-- end game-world -->
+
+
+            <div id="monitor-ui">
+                <img id="monitor-animation" src="images/monitor/monitor-frame0.png" alt="monitor-animation">
+
+                <div id="monitor-screen">
+                    <div id="camera-ui">
+                        <img id="camera-background" src="images/monitor/cam-1a.png" alt="camera-background">
+
+                        <img id="camera-map" src="images/monitor/camera-map.png" alt="camera-map">
+                        
+                        <div id="camera-buttons-div">
+                            <img id="cam-1a-button" src="images/monitor/cam-1a-button-on.png" alt="cam-1a-button">
+                            <img id="cam-1b-button" src="images/monitor/cam-1b-button-off.png" alt="cam-1b-button">
+                            <img id="cam-1c-button" src="images/monitor/cam-1c-button-off.png" alt="cam-1c-button">
+                            <img id="cam-2a-button" src="images/monitor/cam-2a-button-off.png" alt="cam-2a-button">
+                            <img id="cam-2b-button" src="images/monitor/cam-2b-button-off.png" alt="cam-2b-button">
+                            <img id="cam-3-button"  src="images/monitor/cam-3-button-off.png" alt="cam-3-button">
+                            <img id="cam-4a-button" src="images/monitor/cam-4a-button-off.png" alt="cam-4a-button">
+                            <img id="cam-4b-button" src="images/monitor/cam-4b-button-off.png" alt="cam-4b-button">
+                            <img id="cam-5-button"  src="images/monitor/cam-5-button-off.png" alt="cam-5-button">
+                            <img id="cam-6-button"  src="images/monitor/cam-6-button-off.png" alt="cam-6-button">
+                            <img id="cam-7-button"  src="images/monitor/cam-7-button-off.png" alt="cam-7-button">
+                        </div> <!-- end camera-buttons-div -->
+                    </div> <!-- end camera-ui -->
+                </div> <!-- end monitor-screen -->
+
+                <img id="monitor-button" src="images/ui/monitor-button.png" alt="monitor-button">
+                <div id="monitor-button-hitbox"></div>
+            </div> <!-- end monitor-ui -->
+
+
+            <div id="user-interface">
+                <!-- TODO battery percent, night, etc. -->
+            </div> <!-- end user-interface -->
+
+
+            <div id="title-screen">
+                <img id="title-background" src="images/title/title-background.png" alt="title-background">
+                <img id="play-button" src="images/title/play-button.png" alt="play-button">
+                <img id="options-button" src="images/title/options-button.png" alt="options-button">
+            </div> <!-- end title-screen -->
+
+
+            <div id="fade-black-screen">
+                <img id="night-text" src="images/misc/night1-text.png" alt="night-text">
+            </div> <!-- end fade-black-screen -->           
+
+
         </div> <!-- end viewport -->
 
-        
-        <div id="user-interface">
-            <img id="monitor-button" src="images/ui/monitor-button.png" alt="monitor-button">
-            <div id="monitor-button-hitbox"></div>
-
-        </div> <!-- end user-interface -->
-
     </div> <!-- end game-wrapper -->
+
 </body>
 </html>

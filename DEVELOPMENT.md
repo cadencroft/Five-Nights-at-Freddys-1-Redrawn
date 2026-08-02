@@ -98,6 +98,11 @@ I am a Software Engineering and Data Science Mathematics student at IUP, and I a
 - Added debug tool to reload the page when "r" is pressed.
 - Refactored `flipMonitorUp` and `flipMonitorDown` to call helper functions `playMonitorUpAnimation` and `playMonitorDownAnimation` respectively, so that the monitor animations can be reused elsewhere (such as for the Night Select and Option menus). `PlayMonitorUpAniamtion` also accepts the `showCameraUI` function, which will run after the animation is finished.
 
+### 8/2/26
+- Refactored `index.html` to separate elements into propery hierarchical categories. `montior-ui` is now outside of `game-world` and now consists of `monitor-animation`, `monitor-screen`, `monitor-button` and `monitor-button-hitbox`. `monitor-screen`now consists of `camera-ui` which consists all the elements for the camera system, and it can be scaled to hold other ui, such as the night select menu.
+- Refactored `style.css` to rework all Z-indexes to be more logical and properly structured (see z-index map).
+- Modified `script.js` to be compatible with changes stated above.
+
 ## **Problems and Solutions**
 
 ### Button Sprite Hitbox Overlap 7/9/26
@@ -134,6 +139,9 @@ I am a Software Engineering and Data Science Mathematics student at IUP, and I a
 **Problem:** When the `flipMonitorUp` function is run, it would call the `playMonitorAnimationUp` function and then the next line call `showCameraUI`. However, the camera UI would appear before the animation was finished.
 
 **Solution:** I used a callback function, which means that I passed the `showCameraUI` function into the `playMonitorAnimationUp` function so it will run it after the animation is done. This also allows me to pass in other functions to make other UI appear after the animation finishes (such as a Night Select menu or Options menu).
+
+### ADD THE MONITOR BUG STUFF
+
 
 ## **Needs Fixed / Changed**
 - [ ] Bonnie and Chica's appearance in the office are controlled by "b" and "c" instead of game logic

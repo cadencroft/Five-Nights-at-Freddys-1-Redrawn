@@ -1,5 +1,36 @@
 /* 
   ====================================================================================
+* Z-INDEX MAP
+  ==================================================================================== 
+
+0-99: Screens
+    0 title-screen
+    50 game-world
+
+100-199: Monitor & Cameras 
+    100 monitor-ui
+    110 monitor-animation
+    120 monitor-screen
+        130 camera-ui
+            131 camera-background
+            132 camera-map
+            133 camera-buttons-div
+    150 monitor-button
+    160 monitor-button-hitbox
+
+400-499: Menus
+    400 title-screen
+
+500-599: Overlays
+    500 fade-black-screen
+    510 night-text
+
+
+*/
+
+
+/* 
+  ====================================================================================
 * General
   ==================================================================================== 
 */
@@ -40,6 +71,8 @@ body {
 
     opacity: 0;
     pointer-events: none;
+
+    z-index: 50;
 }
 
 #game-world img {
@@ -80,7 +113,7 @@ body {
     left: 0;
     top: 0;
 
-    z-index: 2000;
+    z-index: 500;
 
     background-color: black;
     pointer-events: none;
@@ -95,7 +128,7 @@ body {
     top: 50%;
     opacity: 0;
     transition: opacity 1s;
-    z-index: 2001;
+    z-index: 510;
 
     transform: translate(-50%, -50%) scale(0.5);
 
@@ -116,7 +149,7 @@ body {
     left: 0;
     top: 0;
 
-    z-index: 1000;
+    z-index: 0;
     opacity: 1;
     pointer-events: auto;
 }
@@ -247,14 +280,51 @@ body {
 * Monitor
   ==================================================================================== 
 */
+#monitor-ui{
+    width: 1280px;
+    height: 720px;
+
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    z-index: 100;
+    pointer-events: none;
+}
+
+#monitor-ui img {
+    position: absolute;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+#monitor-screen{
+    width: 1280px;
+    height: 720px;
+
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    pointer-events: none;
+    z-index: 120;
+
+}
+
+#monitor-animation{
+    pointer-events: none;
+    z-index: 110;
+}
+
 #monitor-button{
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
     top:650px;
-    z-index: 100;
+    z-index: 150;
 
     pointer-events: none;
+    opacity: 0;
     
 }
 
@@ -267,14 +337,9 @@ body {
     transform: translateX(-50%);
     
     /* background-color: red; */
-    z-index: 120;
+    z-index: 160;
     opacity: 0.5;
-    pointer-events: auto;
-}
-
-#monitor{
     pointer-events: none;
-    z-index: 20;
 }
 
 /* 
@@ -283,17 +348,36 @@ body {
   ==================================================================================== 
 */
 
+#camera-ui{
+    width: 1280px;
+    height: 720px;
+
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    pointer-events: none;
+    z-index: 130;
+}
+
+#camera-background{
+    opacity: 0;
+    pointer-events: none;
+    z-index: 131;
+}
+
 #camera-map{
     opacity: 0;
     pointer-events: none;
-    z-index: 40;
+    z-index: 132;
 }
 
 #camera-buttons-div{
     position: absolute;
     opacity: 0;
-    z-index: 50;
+    z-index: 133;
 }
+
 #cam-1a-button{
     left: 892px;
     top: 223px;
@@ -348,8 +432,4 @@ body {
     top: 302px;
 }
 
-#camera-background{
-    opacity: 0;
-    pointer-events: none;
-    z-index: 25;
-}
+
