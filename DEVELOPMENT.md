@@ -102,6 +102,10 @@ I am a Software Engineering and Data Science Mathematics student at IUP, and I a
 - Refactored `index.html` to separate elements into propery hierarchical categories. `montior-ui` is now outside of `game-world` and now consists of `monitor-animation`, `monitor-screen`, `monitor-button` and `monitor-button-hitbox`. `monitor-screen`now consists of `camera-ui` which consists all the elements for the camera system, and it can be scaled to hold other ui, such as the night select menu.
 - Refactored `style.css` to rework all Z-indexes to be more logical and properly structured (see z-index map).
 - Modified `script.js` to be compatible with changes stated above.
+- Added HTML elements for the night select screen.
+- Positioned night select elements in CSS.
+- Refactored `script.js` to better handle switching screens. There is now a function `switchToScreen(newScreen)` that includes generic functions `hideScreen(currentScreen)` and `showScreen(newScreen)`. These generic functions replace the repetitive functions `showTitleScreen`, `hideTitleScreen`, `showGameWorld`, `hideGameWorld`, etc. A dictionary called `screens` hold each of the possible screens.
+- Added functionality to make the Play button transition to the night select screen using a monitor up animation.
 
 ## **Problems and Solutions**
 

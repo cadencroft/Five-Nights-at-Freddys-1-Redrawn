@@ -5,6 +5,7 @@
 
 0-99: Screens
     0 title-screen
+    40 night-select-screen
     50 game-world
 
 100-199: Monitor & Cameras 
@@ -17,9 +18,6 @@
             133 camera-buttons-div
     150 monitor-button
     160 monitor-button-hitbox
-
-400-499: Menus
-    400 title-screen
 
 500-599: Overlays
     500 fade-black-screen
@@ -184,6 +182,103 @@ body {
 
 #options-button:hover{
     transform: scale(1.2);
+}
+
+/* 
+  ====================================================================================
+* NIGHT SELECT SCREEN
+  ==================================================================================== 
+*/
+
+#night-select-screen{
+    width: 1280px;
+    height: 720px;
+
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    opacity: 0;
+    pointer-events: none;
+
+    z-index: 40;    
+}
+
+#night-select-night-1-text{
+    left: 800px;
+    top: 100px;
+
+    transform: scale(0.60);
+    transition: 0.25s;
+
+}
+
+#night-select-night-1-text:hover{
+    transform: scale(0.75);
+}
+
+#night-select-night-2-text{
+    left: 800px;
+    top: 200px;
+
+    transform:  scale(0.60);
+    transition: 0.25s;
+
+}
+
+#night-select-night-2-text:hover{
+    transform: scale(0.75);
+}
+
+#night-select-night-3-text{
+    left: 800px;
+    top: 300px;
+
+    transform:  scale(0.60);
+    transition: 0.25s;
+
+}
+
+#night-select-night-3-text:hover{
+    transform: scale(0.75);
+}
+
+#night-select-night-4-text{
+    left: 800px;
+    top: 400px;
+
+    transform:  scale(0.60);
+    transition: 0.25s;
+
+}
+
+#night-select-night-4-text:hover{
+    transform: scale(0.75);
+}
+
+#night-select-night-5-text{
+    left: 800px;
+    top: 500px;
+
+    transform:  scale(0.60);
+    transition: 0.25s;
+
+}
+
+#night-select-night-5-text:hover{
+    transform: scale(0.75);
+}
+
+#night-select-back-text{
+    left: 100px;
+    top: 550px;
+
+    transform: scale(0.75);
+    transition: 0.25s;
+}
+
+#night-select-back-text:hover{
+    transform: scale(0.90);
 }
 
 /* 

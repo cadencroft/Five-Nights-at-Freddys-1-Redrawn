@@ -43,7 +43,7 @@ const assets = {
 
 const gameState = {
 
-    currentScreen:                  "title",        // title | options | game | gameOver
+    currentScreen:                  "title",        // title | nightSelect | options | game | gameOver
     currentNight:                   "1",            // 1 | 2 | 3 | 4 | 5
 
     leftDoorState:                  "open",         // open | closed
@@ -75,6 +75,14 @@ const elements = {
     titleScreen:            document.getElementById("title-screen"),
     playButton:             document.getElementById("play-button"),
     optionsButton:          document.getElementById("options-button"),
+
+    nightSelectScreen:      document.getElementById("night-select-screen"),
+    nightSelectNight1Text:  document.getElementById("night-select-night-1-text"),
+    nightSelectNight2Text:  document.getElementById("night-select-night-2-text"),
+    nightSelectNight3Text:  document.getElementById("night-select-night-3-text"),
+    nightSelectNight4Text:  document.getElementById("night-select-night-4-text"),
+    nightSelectNight5Text:  document.getElementById("night-select-night-5-text"),
+    nightSelectBackText:    document.getElementById("night-select-back-text"),
 
     gameWorld:              document.getElementById("game-world"),
     leftDoorButton:         document.getElementById("left-door-button"),
@@ -115,6 +123,15 @@ const elements = {
 }
 
 //  ====================================================================================
+//* ELEMENT DICTIONARIES
+//  ====================================================================================
+
+const screens = {
+    title:                  elements.titleScreen,
+    nightSelect:            elements.nightSelectScreen
+}
+
+//  ====================================================================================
 //* EVENT LISTENERS
 //  ====================================================================================
 
@@ -123,6 +140,14 @@ document.addEventListener("keydown", handleKeyboardInput);
 
 elements.playButton.addEventListener("click", pressPlay);
 elements.optionsButton.addEventListener("click", pressOptions);
+
+elements.nightSelectNight1Text.addEventListener("click", pressNight1);
+elements.nightSelectNight2Text.addEventListener("click", pressNight2);
+elements.nightSelectNight3Text.addEventListener("click", pressNight3);
+elements.nightSelectNight4Text.addEventListener("click", pressNight4);
+elements.nightSelectNight5Text.addEventListener("click", pressNight5);
+elements.nightSelectBackText.addEventListener("click", pressBack);
+
 
 elements.leftDoorButton.addEventListener("click", toggleLeftDoor);
 elements.leftLightButton.addEventListener("click", toggleLeftLight);
@@ -170,21 +195,57 @@ function preLoadMonitorFrames(){
 };
 
 //  ====================================================================================
+//* SCREEN MANAGEMENT
+//  ====================================================================================
+
+
+function switchToScreen(newScreen){
+    hideScreen(gameState.currentScreen);
+    showScreen(newScreen);
+
+    gameState.currentScreen = newScreen;
+}
+
+function showScreen(newScreen){
+
+    console.log("Showing Screen: ", newScreen)
+
+    screens[newScreen].style.opacity = 1;
+    screens[newScreen].style.pointerEvents = "auto";
+
+    
+};
+
+function hideScreen(oldScreen){
+
+    console.log("Hiding Screen: ", oldScreen)
+
+    screens[oldScreen].style.opacity = 0;
+    screens[oldScreen].style.pointerEvents = "none";
+
+};
+
+
+
+//  ====================================================================================
 //* TITLE SCREEN
 //  ====================================================================================
 
 function pressPlay(){
     console.log("Play Pressed");
+
+    playMonitorUpAnimation(() => switchToScreen("nightSelect"));
     
-    fadeToBlack(2);
+
+    // fadeToBlack(2);
     
-    setTimeout(hideTitleScreen, 2000);
+    // setTimeout(hideTitleScreen, 2000); //Removed this function (Use switchToScreen() instead)
 
-    setTimeout(showNightText, 3000);
+    // setTimeout(showNightText, 3000);
 
-    setTimeout(hideNightText, 6000);
+    // setTimeout(hideNightText, 6000);
 
-    setTimeout(startGame, 7000);
+    // setTimeout(startGame, 7000);
 };
 
 function fadeToBlack(seconds){
@@ -197,18 +258,6 @@ function fadeFromBlack(seconds){
     elements.fadeBlackScreen.style.transition = `opacity ${seconds}s`;
     elements.fadeBlackScreen.style.opacity = 0;
     elements.fadeBlackScreen.style.pointerEvents = "none";
-};
-
-function hideTitleScreen(){
-    elements.titleScreen.style.opacity = 0;
-    elements.titleScreen.style.pointerEvents = "none";
-};
-
-function showTitleScreen(){
-    elements.titleScreen.style.opacity = 1;
-    elements.titleScreen.style.pointerEvents = "auto";
-
-    gameState.currentScreen = "title";
 };
 
 function showNightText(){
@@ -225,6 +274,38 @@ function pressOptions(){
 };
 
 //  ====================================================================================
+//* NIGHT SELECT SCREEN
+//  ====================================================================================
+
+
+function pressNight1(){
+    console.log("Night 1 pressed");
+}
+
+function pressNight2(){
+    console.log("Night 2 pressed");
+}
+
+function pressNight3(){
+    console.log("Night 3 pressed");
+}
+
+function pressNight4(){
+    console.log("Night 4 pressed");
+}
+
+function pressNight5(){
+    console.log("Night 5 pressed");
+}
+
+function pressBack(){
+    console.log("Back pressed");
+
+    playMonitorDownAnimation(switchToScreen("title"));
+}
+
+
+//  ====================================================================================
 //* GAME
 //  ====================================================================================
 
@@ -232,17 +313,10 @@ function startGame(){
 
     initializeNight();
     
-    showGameWorld();
+    showGameWorld();  //Removed this method. (Use switchToScreen() instead)
 
     fadeFromBlack(7);
 
-};
-
-function showGameWorld(){
-    elements.gameWorld.style.opacity = 1;
-    elements.gameWorld.style.pointerEvents = "auto";
-
-    gameState.currentScreen = "game";
 };
 
 function initializeNight(){
@@ -493,7 +567,7 @@ function flipMonitorDown(){
     
 };
 
-function playMonitorDownAnimation(){
+function playMonitorDownAnimation(callback){
     
     gameState.monitorAnimationState = "inProgress";
 
@@ -512,6 +586,10 @@ function playMonitorDownAnimation(){
 
             if(gameState.currentScreen == "game" && gameState.mouseInMonitorButtonHitbox == "no"){
                 makeMonitorButtonVisible();
+            }
+
+            if(callback){
+                callback();
             }
         }
     }, 40);
