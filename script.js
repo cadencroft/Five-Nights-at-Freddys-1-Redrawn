@@ -76,6 +76,9 @@ const elements = {
     playButton:             document.getElementById("play-button"),
     optionsButton:          document.getElementById("options-button"),
 
+    optionsMenu:            document.getElementById("options-menu"),
+    optionsMenuBackText:    document.getElementById("options-menu-back-text"),
+
     nightSelectScreen:      document.getElementById("night-select-screen"),
     nightSelectNight1Text:  document.getElementById("night-select-night-1-text"),
     nightSelectNight2Text:  document.getElementById("night-select-night-2-text"),
@@ -128,6 +131,7 @@ const elements = {
 
 const screens = {
     title:                  elements.titleScreen,
+    options:                elements.optionsMenu,
     nightSelect:            elements.nightSelectScreen
 }
 
@@ -141,12 +145,14 @@ document.addEventListener("keydown", handleKeyboardInput);
 elements.playButton.addEventListener("click", pressPlay);
 elements.optionsButton.addEventListener("click", pressOptions);
 
+elements.optionsMenuBackText.addEventListener("click", pressOptionsMenuBack);
+
 elements.nightSelectNight1Text.addEventListener("click", pressNight1);
 elements.nightSelectNight2Text.addEventListener("click", pressNight2);
 elements.nightSelectNight3Text.addEventListener("click", pressNight3);
 elements.nightSelectNight4Text.addEventListener("click", pressNight4);
 elements.nightSelectNight5Text.addEventListener("click", pressNight5);
-elements.nightSelectBackText.addEventListener("click", pressBack);
+elements.nightSelectBackText.addEventListener("click", pressNightSelectBack);
 
 
 elements.leftDoorButton.addEventListener("click", toggleLeftDoor);
@@ -234,6 +240,7 @@ function hideScreen(oldScreen){
 function pressPlay(){
     console.log("Play Pressed");
 
+    //Needs the callback since the screen must switch AFTER the animation is done
     playMonitorUpAnimation(() => switchToScreen("nightSelect"));
     
 
@@ -270,8 +277,23 @@ function hideNightText(){
 
 function pressOptions(){
     console.log("Options Pressed");
-    // TODO LATER
+    
+    //Needs the callback since the screen must switch AFTER the animation is done
+    playMonitorUpAnimation(() => switchToScreen("options"));
 };
+
+//  ====================================================================================
+//* OPTIONS MENU
+//  ====================================================================================
+
+function pressOptionsMenuBack(){
+    console.log("Back pressed");
+
+    switchToScreen("title");
+    playMonitorDownAnimation();
+
+};
+
 
 //  ====================================================================================
 //* NIGHT SELECT SCREEN
@@ -298,10 +320,11 @@ function pressNight5(){
     console.log("Night 5 pressed");
 }
 
-function pressBack(){
+function pressNightSelectBack(){
     console.log("Back pressed");
 
-    playMonitorDownAnimation(switchToScreen("title"));
+    switchToScreen("title");
+    playMonitorDownAnimation();
 }
 
 

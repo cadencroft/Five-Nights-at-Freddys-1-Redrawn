@@ -105,7 +105,8 @@ I am a Software Engineering and Data Science Mathematics student at IUP, and I a
 - Added HTML elements for the night select screen.
 - Positioned night select elements in CSS.
 - Refactored `script.js` to better handle switching screens. There is now a function `switchToScreen(newScreen)` that includes generic functions `hideScreen(currentScreen)` and `showScreen(newScreen)`. These generic functions replace the repetitive functions `showTitleScreen`, `hideTitleScreen`, `showGameWorld`, `hideGameWorld`, etc. A dictionary called `screens` hold each of the possible screens.
-- Added functionality to make the Play button transition to the night select screen using a monitor up animation.
+- Added functionality to make the Play button transition to the night select screen using a monitor up animation, and a back button.
+- Added functionality to make the Options button transition to the options menu using a monitor up animation, and a back button. 
 
 ## **Problems and Solutions**
 

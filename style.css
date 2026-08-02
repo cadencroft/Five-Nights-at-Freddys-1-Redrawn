@@ -3,8 +3,9 @@
 * Z-INDEX MAP
   ==================================================================================== 
 
-0-99: Screens
+0-99: Screens & Menus
     0 title-screen
+    10 options-menu
     40 night-select-screen
     50 game-world
 
@@ -184,6 +185,46 @@ body {
     transform: scale(1.2);
 }
 
+
+/* 
+  ====================================================================================
+* OPTIONS MENU
+  ==================================================================================== 
+*/
+
+#options-menu{
+    width: 1280px;
+    height: 720px;
+
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    opacity: 0;
+    pointer-events: none;
+
+    z-index: 10;    
+}
+
+#options-menu-options-text{
+    left:30px;
+    top: 50px;
+
+    transform: scale(0.8);    
+}
+
+#options-menu-back-text{
+    left: 100px;
+    top: 550px;
+
+    transform: scale(0.50);
+    transition: 0.25s;
+}
+
+#options-menu-back-text:hover{
+    transform: scale(0.70);
+}
+
 /* 
   ====================================================================================
 * NIGHT SELECT SCREEN
@@ -202,6 +243,14 @@ body {
     pointer-events: none;
 
     z-index: 40;    
+}
+
+#night-select-select-night-text{
+    left:0px;
+    top: 50px;
+
+    transform: scale(0.8);
+
 }
 
 #night-select-night-1-text{
@@ -270,15 +319,15 @@ body {
 }
 
 #night-select-back-text{
-    left: 100px;
+    left: 75px;
     top: 550px;
 
-    transform: scale(0.75);
+    transform: scale(0.50);
     transition: 0.25s;
 }
 
 #night-select-back-text:hover{
-    transform: scale(0.90);
+    transform: scale(0.70);
 }
 
 /* 
