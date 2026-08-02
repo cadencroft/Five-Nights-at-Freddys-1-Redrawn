@@ -109,6 +109,8 @@ I am a Software Engineering and Data Science Mathematics student at IUP, and I a
 - Added functionality to make the Options button transition to the options menu using a monitor up animation, and a back button. 
 - Added functionaltiy to transition into the game when the desired night is selected. Each eventListener directs to `selectNight(night)`, which sets the current night and then runs `startGame()`, which plays the fade in/out animation, displays the selected night text, initializes the game, and switches to the gameWorld.
 - The current selected night now displays depending on what the user selects.
+- Added a highest night unlocked functionality that keeps track of the highest night that the player has reached. In the night select menu, only the unlocked nights will be white and clickable. The other locked nights won't be able to be clicked and will be grayed out.
+- Added temporary function to change the highest night reached using 1-5 keys for debugging.
 
 ## **Problems and Solutions**
 

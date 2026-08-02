@@ -53,6 +53,7 @@ const gameState = {
 
     currentScreen:                  "title",        // title | nightSelect | options | gameWorld | gameOver
     currentNight:                    1,             // 1 | 2 | 3 | 4 | 5
+    highestNightReached:             1,             // 1 | 2 | 3 | 4 | 5
 
     leftDoorState:                  "open",         // open | closed
     rightDoorState:                 "open",         // open | closed
@@ -142,6 +143,14 @@ const screens = {
     options:                elements.optionsMenu,
     nightSelect:            elements.nightSelectScreen,
     gameWorld:              elements.gameWorld
+}
+
+const nightButtons = {
+    1:                      elements.nightSelectNight1Text,
+    2:                      elements.nightSelectNight2Text,
+    3:                      elements.nightSelectNight3Text,
+    4:                      elements.nightSelectNight4Text,
+    5:                      elements.nightSelectNight5Text,
 }
 
 //  ====================================================================================
@@ -238,13 +247,14 @@ function hideScreen(oldScreen){
 
 };
 
-
 //  ====================================================================================
 //* TITLE SCREEN
 //  ====================================================================================
 
 function pressPlay(){
     console.log("Play Pressed");
+
+    updateUnlockedNights();
 
     //Needs the callback since the screen must switch AFTER the animation is done
     playMonitorUpAnimation(() => switchToScreen("nightSelect"));
@@ -253,7 +263,7 @@ function pressPlay(){
 
 function pressOptions(){
     console.log("Options Pressed");
-    
+
     //Needs the callback since the screen must switch AFTER the animation is done
     playMonitorUpAnimation(() => switchToScreen("options"));
 };
@@ -278,9 +288,48 @@ function pressOptionsMenuBack(){
 function pressNightSelectBack(){
     console.log("Back pressed");
 
+    hideNightSelectButtons();
+
     switchToScreen("title");
     playMonitorDownAnimation();
 }
+
+function updateUnlockedNights(){
+    
+    tryUnlockNight(1);
+    tryUnlockNight(2);
+    tryUnlockNight(3);
+    tryUnlockNight(4);
+    tryUnlockNight(5);
+
+};
+
+function tryUnlockNight(night){
+
+    if(night <= gameState.highestNightReached){
+
+        unlockNight(night);
+    }
+    else{
+
+        lockNight(night);
+    }
+};
+
+function unlockNight(night){
+
+    nightButtons[night].style.opacity = 1;
+    nightButtons[night].style.pointerEvents = "auto";
+
+};
+
+function lockNight(night){
+
+    nightButtons[night].style.opacity = 0.5;
+    nightButtons[night].style.pointerEvents = "none";
+
+};
+
 
 function selectNight(night){
     console.log("Selected Night ", night)
@@ -288,6 +337,14 @@ function selectNight(night){
     gameState.currentNight = night;
 
     startGame();
+};
+
+function hideNightSelectButtons(){
+
+    Object.values(nightButtons).forEach(button => {
+        button.style.pointerEvents = "none";
+    });
+
 };
 
 //  ====================================================================================
@@ -733,6 +790,26 @@ function handleKeyboardInput(event){
 
     else if (event.key.toLowerCase() == "r"){
         location.reload();
+    }
+
+    else if (event.key.toLowerCase() == "1"){
+        gameState.highestNightReached = 1;
+    }
+
+    else if (event.key.toLowerCase() == "2"){
+        gameState.highestNightReached = 2;
+    }
+
+    else if (event.key.toLowerCase() == "3"){
+        gameState.highestNightReached = 3;
+    }
+
+    else if (event.key.toLowerCase() == "4"){
+        gameState.highestNightReached = 4;
+    }
+
+    else if (event.key.toLowerCase() == "5"){
+        gameState.highestNightReached = 5;
     }
 };
 
