@@ -22,6 +22,10 @@
     150 monitor-button
     160 monitor-button-hitbox
 
+300-399: User Interface
+    300 user-interface
+
+
 500-599: Overlays
     500 fade-black-screen
     510 night-text
@@ -96,24 +100,6 @@ body {
 }
 
 #game-world img {
-    position: absolute;
-    user-select: none;
-    -webkit-user-drag: none;
-}
-
-#user-interface {
-    width: 1280px;
-    height: 720px;
-
-    position: absolute;
-    left: 0;
-    top: 0;
-
-    pointer-events: none;
-
-}
-
-#user-interface img {
     position: absolute;
     user-select: none;
     -webkit-user-drag: none;
@@ -360,6 +346,40 @@ body {
 
 #night-select-back-text:hover{
     transform: scale(0.70);
+}
+
+/* 
+  ====================================================================================
+* USER INTERFACE
+  ==================================================================================== 
+*/
+
+#user-interface {
+    width: 1280px;
+    height: 720px;
+
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    pointer-events: none;
+    z-index: 300;
+
+    opacity: 0
+
+}
+
+#user-interface img {
+    position: absolute;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+#time-text{
+    right: 10px;
+    top: 10px;
+
+    transform: scale(0.7);
 }
 
 /* 

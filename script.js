@@ -24,24 +24,34 @@ const assets = {
     },
 
     monitorFrames: [
-        "images/monitor/monitor-frame0.png",
-        "images/monitor/monitor-frame1.png",
-        "images/monitor/monitor-frame2.png",
-        "images/monitor/monitor-frame3.png",
-        "images/monitor/monitor-frame4.png",
-        "images/monitor/monitor-frame5.png",
-        "images/monitor/monitor-frame6.png",
-        "images/monitor/monitor-frame7.png",
-        "images/monitor/monitor-frame8.png",
-        "images/monitor/monitor-frame9.png"
+                "images/monitor/monitor-frame0.png",
+                "images/monitor/monitor-frame1.png",
+                "images/monitor/monitor-frame2.png",
+                "images/monitor/monitor-frame3.png",
+                "images/monitor/monitor-frame4.png",
+                "images/monitor/monitor-frame5.png",
+                "images/monitor/monitor-frame6.png",
+                "images/monitor/monitor-frame7.png",
+                "images/monitor/monitor-frame8.png",
+                "images/monitor/monitor-frame9.png"
     ],
 
     nightText: {
-        1: "images/text/night1-text.png",
-        2: "images/text/night2-text.png",
-        3: "images/text/night3-text.png",
-        4: "images/text/night4-text.png",
-        5: "images/text/night5-text.png"
+        1:      "images/text/night1-text.png",
+        2:      "images/text/night2-text.png",
+        3:      "images/text/night3-text.png",
+        4:      "images/text/night4-text.png",
+        5:      "images/text/night5-text.png"
+    },
+
+    timeText:{
+        12:     "images/text/time-12am-text.png",
+         1:     "images/text/time-12am-text.png",
+         2:     "images/text/time-12am-text.png",
+         3:     "images/text/time-12am-text.png",
+         4:     "images/text/time-12am-text.png",
+         5:     "images/text/time-12am-text.png",
+         6:     "images/text/time-12am-text.png",
     }
 };
 
@@ -96,6 +106,9 @@ const elements = {
     nightSelectNight4Text:  document.getElementById("night-select-night-4-text"),
     nightSelectNight5Text:  document.getElementById("night-select-night-5-text"),
     nightSelectBackText:    document.getElementById("night-select-back-text"),
+
+    userInterface:          document.getElementById("user-interface"),
+    timeText:               document.getElementById("time-text"),
 
     gameWorld:              document.getElementById("game-world"),
     leftDoorButton:         document.getElementById("left-door-button"),
@@ -387,6 +400,22 @@ function hideNightSelectButtons(){
 };
 
 //  ====================================================================================
+//* USER INTERFACE
+//  ====================================================================================
+
+function showUserInterface(){
+    console.log("UI SHOWN");
+    elements.userInterface.style.opacity = 1;
+
+};
+
+function hideUserInterface(){
+    elements.userInterface.style.opacity = 0;
+
+};
+
+
+//  ====================================================================================
 //* GAME
 //  ====================================================================================
 
@@ -409,6 +438,8 @@ function startGame(){
 
     console.log("5");
     setTimeout(() => switchToScreen("gameWorld"), 8000);
+
+    setTimeout(showUserInterface, 8000);
     
     console.log("6");
     setTimeout(() => fadeFromBlack(7), 9000);

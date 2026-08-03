@@ -116,6 +116,7 @@ I am a Software Engineering and Data Science Mathematics student at IUP, and I a
 - Added red recording light to the camera UI.
 - Added the "12:00 AM" text during the night fade in screen and functions `showTimeText` and `hidetimeText`.
 - Moved all text images into the /text folder.
+- Added the "X AM" text that appears in the top right once the game starts.
 
 ## **Problems and Solutions**
 
