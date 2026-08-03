@@ -15,8 +15,9 @@
     120 monitor-screen
         130 camera-ui
             131 camera-background
-            132 camera-map
-            133 camera-buttons-div
+            133 camera-outline
+            135 camera-map
+            137 camera-buttons-div
     150 monitor-button
     160 monitor-button-hitbox
 
@@ -510,16 +511,22 @@ body {
     z-index: 131;
 }
 
+#camera-outline{
+    opacity: 0;
+    pointer-events: none;
+    z-index: 133;
+}
+
 #camera-map{
     opacity: 0;
     pointer-events: none;
-    z-index: 132;
+    z-index: 135;
 }
 
 #camera-buttons-div{
     position: absolute;
     opacity: 0;
-    z-index: 133;
+    z-index: 137;
 }
 
 #cam-1a-button{

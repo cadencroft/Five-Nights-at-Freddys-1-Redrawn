@@ -119,6 +119,7 @@ const elements = {
     
     cameraUI:               document.getElementById("camera-ui"),
     cameraMap:              document.getElementById("camera-map"),
+    cameraOutline:          document.getElementById("camera-outline"),
     cameraButtonsDiv:       document.getElementById("camera-buttons-div"),
     cam1aButton:            document.getElementById("cam-1a-button"),
     cam1bButton:            document.getElementById("cam-1b-button"),
@@ -739,6 +740,7 @@ function initializeMonitor(){
     elements.monitorAnimation.src = assets.monitorFrames[0];
 
     elements.cameraMap.style.opacity = 0;
+    elements.cameraOutline.style.opacity = 0;
     elements.cameraButtonsDiv.style.opacity = 0;
     elements.cameraBackground.style.opacity = 0;
 
@@ -753,6 +755,7 @@ function showCameraUI(){
     elements.cameraUI.style.pointerEvents = "auto";
 
     elements.cameraMap.style.opacity = 1;
+    elements.cameraOutline.style.opacity = 1;
     elements.cameraButtonsDiv.style.opacity = 1;
     elements.cameraBackground.style.opacity = 0.4;  
     
@@ -765,6 +768,7 @@ function hideCameraUI(){
     elements.cameraUI.style.pointerEvents = "none";
 
     elements.cameraMap.style.opacity = 0;
+    elements.cameraOutline.style.opacity = 0;
     elements.cameraButtonsDiv.style.opacity = 0;
     elements.cameraBackground.style.opacity = 0;
 };

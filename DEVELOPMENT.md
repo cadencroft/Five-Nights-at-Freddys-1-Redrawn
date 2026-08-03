@@ -112,6 +112,7 @@ I am a Software Engineering and Data Science Mathematics student at IUP, and I a
 - Added a highest night unlocked functionality that keeps track of the highest night that the player has reached. In the night select menu, only the unlocked nights will be white and clickable. The other locked nights won't be able to be clicked and will be grayed out.
 - Added temporary function to change the highest night reached using 1-5 keys for debugging.
 - Added local storage saving and loading functionality. When the game loads, it checks to see if there is local storage and if so, it loads in the `highestNightReached` variable. Temporarily, "s" saves the current `highestNightReached` to local storage, which will later be replaced by saving the game when a night is complete. Temporarily, "x" resets the current `highestNightReached` to local storage, which will later be replaced by a "Reset Game Data" button in the options menu.
+- Added camera outline visual when camera monitor is up as well as while the select night and options menus are up.
 
 ## **Problems and Solutions**
 
