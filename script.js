@@ -37,11 +37,11 @@ const assets = {
     ],
 
     nightText: {
-        1: "images/misc/night1-text.png",
-        2: "images/misc/night2-text.png",
-        3: "images/misc/night3-text.png",
-        4: "images/misc/night4-text.png",
-        5: "images/misc/night5-text.png"
+        1: "images/text/night1-text.png",
+        2: "images/text/night2-text.png",
+        3: "images/text/night3-text.png",
+        4: "images/text/night4-text.png",
+        5: "images/text/night5-text.png"
     }
 };
 
@@ -80,6 +80,7 @@ const elements = {
     fadeBlackScreen:        document.getElementById("fade-black-screen"),
 
     nightText:              document.getElementById("night-text"),
+    time1200amText:         document.getElementById("time-1200am-text"),
 
     titleScreen:            document.getElementById("title-screen"),
     playButton:             document.getElementById("play-button"),
@@ -400,14 +401,17 @@ function startGame(){
     console.log("3");
     setTimeout(showNightText, 3000);
 
+    setTimeout(showTimeText, 5000);
+
     console.log("4");
-    setTimeout(hideNightText, 6000);
+    setTimeout(hideNightText, 8000);
+    setTimeout(hideTimeText, 8000);
 
     console.log("5");
-    setTimeout(() => switchToScreen("gameWorld"), 6000);
+    setTimeout(() => switchToScreen("gameWorld"), 8000);
     
     console.log("6");
-    setTimeout(() => fadeFromBlack(7), 7000);
+    setTimeout(() => fadeFromBlack(7), 9000);
 
 };
 
@@ -445,6 +449,7 @@ function showNightText(){
     updateCurrentNightText();
 
     elements.nightText.style.opacity = 1;
+    
 };
 
 function hideNightText(){
@@ -452,6 +457,14 @@ function hideNightText(){
     console.log("Hiding Night Text");
         
     elements.nightText.style.opacity = 0;
+};
+
+function showTimeText(){
+    elements.time1200amText.style.opacity = 1;
+};
+
+function hideTimeText(){
+    elements.time1200amText.style.opacity = 0;
 };
 
 function updateCurrentNightText(){

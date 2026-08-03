@@ -154,6 +154,17 @@ body {
 
 }
 
+#time-1200am-text{
+    position: absolute;
+    left: 50%;
+    top: 59%;
+    opacity: 0;
+    transition: opacity 1s;
+    z-index: 510;
+
+    transform: translate(-50%, -50%) scale(0.3); 
+}
+
 
 /* 
   ====================================================================================
