@@ -119,6 +119,7 @@ const elements = {
     
     cameraUI:               document.getElementById("camera-ui"),
     cameraMap:              document.getElementById("camera-map"),
+    recordingLight:         document.getElementById("recording-light"),
     cameraOutline:          document.getElementById("camera-outline"),
     cameraButtonsDiv:       document.getElementById("camera-buttons-div"),
     cam1aButton:            document.getElementById("cam-1a-button"),
@@ -756,6 +757,8 @@ function showCameraUI(){
 
     elements.cameraMap.style.opacity = 1;
     elements.cameraOutline.style.opacity = 1;
+    elements.recordingLight.style.opacity = 1;
+    elements.recordingLight.classList.add("recording-blink");
     elements.cameraButtonsDiv.style.opacity = 1;
     elements.cameraBackground.style.opacity = 0.4;  
     
@@ -769,6 +772,8 @@ function hideCameraUI(){
 
     elements.cameraMap.style.opacity = 0;
     elements.cameraOutline.style.opacity = 0;
+    elements.recordingLight.style.opacity = 0;
+    elements.recordingLight.classList.remove("recording-blink");
     elements.cameraButtonsDiv.style.opacity = 0;
     elements.cameraBackground.style.opacity = 0;
 };

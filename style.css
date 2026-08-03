@@ -16,6 +16,7 @@
         130 camera-ui
             131 camera-background
             133 camera-outline
+            134 recording-light
             135 camera-map
             137 camera-buttons-div
     150 monitor-button
@@ -29,6 +30,25 @@
 */
 
 
+/* 
+  ====================================================================================
+* ANIMATIONS
+  ==================================================================================== 
+*/
+
+
+.recording-blink
+{
+    animation: blink 1.4s infinite;
+}
+@keyframes blink {
+    0%, 50% {
+        opacity: 1;
+    }
+    50.01%, 100% {
+        opacity: 0;
+    }
+}
 /* 
   ====================================================================================
 * General
@@ -515,6 +535,12 @@ body {
     opacity: 0;
     pointer-events: none;
     z-index: 133;
+}
+
+#recording-light{
+    opacity:0;
+    pointer-events: none;
+    z-index: 134;
 }
 
 #camera-map{
