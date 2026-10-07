@@ -46,12 +46,12 @@ const assets = {
 
     timeText:{
         12:     "images/text/time-12am-text.png",
-         1:     "images/text/time-12am-text.png",
-         2:     "images/text/time-12am-text.png",
-         3:     "images/text/time-12am-text.png",
-         4:     "images/text/time-12am-text.png",
-         5:     "images/text/time-12am-text.png",
-         6:     "images/text/time-12am-text.png",
+         1:     "images/text/time-1am-text.png",
+         2:     "images/text/time-2am-text.png",
+         3:     "images/text/time-3am-text.png",
+         4:     "images/text/time-4am-text.png",
+         5:     "images/text/time-5am-text.png",
+         6:     "images/text/time-6am-text.png",
     }
 };
 
@@ -64,6 +64,8 @@ const gameState = {
     currentScreen:                  "title",        // title | nightSelect | options | gameWorld | gameOver
     currentNight:                    1,             // 1 | 2 | 3 | 4 | 5
     highestNightReached:             1,             // 1 | 2 | 3 | 4 | 5
+
+    currentHour:                    12,             // 12 | 1 | 2 | 3 | 4 | 5 | 6
 
     leftDoorState:                  "open",         // open | closed
     rightDoorState:                 "open",         // open | closed
@@ -388,7 +390,7 @@ function selectNight(night){
 
     gameState.currentNight = night;
 
-    startGame();
+    transitionIntoGame();
 };
 
 function hideNightSelectButtons(){
@@ -416,10 +418,10 @@ function hideUserInterface(){
 
 
 //  ====================================================================================
-//* GAME
+//* TRANSITION INTO GAME
 //  ====================================================================================
 
-function startGame(){
+function transitionIntoGame(){
 
     console.log("1");
     
@@ -455,6 +457,8 @@ function initializeNight(){
     initializeMonitor();
 
     initializeCamera();
+
+    initializeHour();
 
 };
 
@@ -503,6 +507,29 @@ function updateCurrentNightText(){
     elements.nightText.src = assets.nightText[gameState.currentNight];
 
 };
+
+function initializeHour(){
+
+    gameState.currentHour = 12;
+};
+
+
+
+//  ====================================================================================
+//* GAME CLOCK / GAMEPLAY LOOP
+//  ====================================================================================
+
+function beginGameLoop(){
+
+
+
+};
+
+
+
+
+
+
 
 //  ====================================================================================
 //* DOORS

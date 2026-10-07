@@ -118,6 +118,13 @@ I am a Software Engineering and Data Science Mathematics student at IUP, and I a
 - Moved all text images into the /text folder.
 - Added the "X AM" text that appears in the top right once the game starts.
 
+### 10/7/26
+- Added `currentHour` variable to `gameState` and created function `initializeHour` to initialize its value to 12. 
+- Modified the timeText file paths in the `assets` object to correspond to their respective hour.
+- Renamed the `startGame` function to `transitionIntoGame` since that function contains the code for the transition rather than actually starting the game.
+
+
+
 ## **Problems and Solutions**
 
 ### Button Sprite Hitbox Overlap 7/9/26
