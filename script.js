@@ -519,6 +519,19 @@ function initializeHour(){
 //* GAME CLOCK / GAMEPLAY LOOP
 //  ====================================================================================
 
+function advanceHour(){
+
+    if (gameState.currentHour == 12){
+        gameState.currentHour = 1;
+    }
+    else {
+        gameState.currentHour += 1;
+    }
+    
+    elements.timeText.src = assets.timeText[gameState.currentHour];
+
+};
+
 function beginGameLoop(){
 
 

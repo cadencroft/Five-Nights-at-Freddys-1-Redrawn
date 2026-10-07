@@ -122,6 +122,7 @@ I am a Software Engineering and Data Science Mathematics student at IUP, and I a
 - Added `currentHour` variable to `gameState` and created function `initializeHour` to initialize its value to 12. 
 - Modified the timeText file paths in the `assets` object to correspond to their respective hour.
 - Renamed the `startGame` function to `transitionIntoGame` since that function contains the code for the transition rather than actually starting the game.
+- Added function `advanceHour` that increments the `currentHour` gameState and the `timeText` sprite to the next hour
 
 
 
