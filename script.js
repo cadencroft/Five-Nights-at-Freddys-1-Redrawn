@@ -66,6 +66,7 @@ const gameState = {
     highestNightReached:             1,             // 1 | 2 | 3 | 4 | 5
 
     currentHour:                    12,             // 12 | 1 | 2 | 3 | 4 | 5 | 6
+    gameRunning:                    false,          // true | false
 
     leftDoorState:                  "open",         // open | closed
     rightDoorState:                 "open",         // open | closed
@@ -89,67 +90,68 @@ const gameState = {
 
 const elements = {
 
-    fadeBlackScreen:        document.getElementById("fade-black-screen"),
+    fadeBlackScreen:            document.getElementById("fade-black-screen"),
 
-    nightText:              document.getElementById("night-text"),
-    time1200amText:         document.getElementById("time-1200am-text"),
+    fadeBlackScreenNightText:   document.getElementById("fade-black-screen-night-text"),
+    time1200amText:             document.getElementById("time-1200am-text"),
 
-    titleScreen:            document.getElementById("title-screen"),
-    playButton:             document.getElementById("play-button"),
-    optionsButton:          document.getElementById("options-button"),
+    titleScreen:                document.getElementById("title-screen"),
+    playButton:                 document.getElementById("play-button"),
+    optionsButton:              document.getElementById("options-button"),
 
-    optionsMenu:            document.getElementById("options-menu"),
-    optionsMenuBackText:    document.getElementById("options-menu-back-text"),
+    optionsMenu:                document.getElementById("options-menu"),
+    optionsMenuBackText:        document.getElementById("options-menu-back-text"),
 
-    nightSelectScreen:      document.getElementById("night-select-screen"),
-    nightSelectNight1Text:  document.getElementById("night-select-night-1-text"),
-    nightSelectNight2Text:  document.getElementById("night-select-night-2-text"),
-    nightSelectNight3Text:  document.getElementById("night-select-night-3-text"),
-    nightSelectNight4Text:  document.getElementById("night-select-night-4-text"),
-    nightSelectNight5Text:  document.getElementById("night-select-night-5-text"),
-    nightSelectBackText:    document.getElementById("night-select-back-text"),
+    nightSelectScreen:          document.getElementById("night-select-screen"),
+    nightSelectNight1Text:      document.getElementById("night-select-night-1-text"),
+    nightSelectNight2Text:      document.getElementById("night-select-night-2-text"),
+    nightSelectNight3Text:      document.getElementById("night-select-night-3-text"),
+    nightSelectNight4Text:      document.getElementById("night-select-night-4-text"),
+    nightSelectNight5Text:      document.getElementById("night-select-night-5-text"),
+    nightSelectBackText:        document.getElementById("night-select-back-text"),
 
-    userInterface:          document.getElementById("user-interface"),
-    timeText:               document.getElementById("time-text"),
+    userInterface:              document.getElementById("user-interface"),
+    gameTimeText:               document.getElementById("game-time-text"),
+    gameNightText:              document.getElementById("game-night-text"),
 
-    gameWorld:              document.getElementById("game-world"),
-    leftDoorButton:         document.getElementById("left-door-button"),
-    leftLightButton:        document.getElementById("left-light-button"),
-    leftDoor:               document.getElementById("left-door"),
-    leftDoorwayLight:       document.getElementById("left-doorway-light"),
-    leftWindowLight:        document.getElementById("left-window-light"),
-    leftDoorwayBonnie:      document.getElementById("left-doorway-bonnie"),
-    leftWindowBonnie:       document.getElementById("left-window-bonnie"),
+    gameWorld:                  document.getElementById("game-world"),
+    leftDoorButton:             document.getElementById("left-door-button"),
+    leftLightButton:            document.getElementById("left-light-button"),
+    leftDoor:                   document.getElementById("left-door"),
+    leftDoorwayLight:           document.getElementById("left-doorway-light"),
+    leftWindowLight:            document.getElementById("left-window-light"),
+    leftDoorwayBonnie:          document.getElementById("left-doorway-bonnie"),
+    leftWindowBonnie:           document.getElementById("left-window-bonnie"),
 
-    rightDoorButton:        document.getElementById("right-door-button"),
-    rightLightButton:       document.getElementById("right-light-button"),
-    rightDoor:              document.getElementById("right-door"),
-    rightDoorwayLight:      document.getElementById("right-doorway-light"),
-    rightWindowLight:       document.getElementById("right-window-light"),
-    rightWindowChica:       document.getElementById("right-window-chica"),
+    rightDoorButton:            document.getElementById("right-door-button"),
+    rightLightButton:           document.getElementById("right-light-button"),
+    rightDoor:                  document.getElementById("right-door"),
+    rightDoorwayLight:          document.getElementById("right-doorway-light"),
+    rightWindowLight:           document.getElementById("right-window-light"),
+    rightWindowChica:           document.getElementById("right-window-chica"),
 
-    monitorUI:              document.getElementById("monitor-ui"),
-    monitorButton:          document.getElementById("monitor-button"),
-    monitorButtonHitbox:    document.getElementById("monitor-button-hitbox"),
-    monitorAnimation:       document.getElementById("monitor-animation"),
+    monitorUI:                  document.getElementById("monitor-ui"),
+    monitorButton:              document.getElementById("monitor-button"),
+    monitorButtonHitbox:        document.getElementById("monitor-button-hitbox"),
+    monitorAnimation:           document.getElementById("monitor-animation"),
     
-    cameraUI:               document.getElementById("camera-ui"),
-    cameraMap:              document.getElementById("camera-map"),
-    recordingLight:         document.getElementById("recording-light"),
-    cameraOutline:          document.getElementById("camera-outline"),
-    cameraButtonsDiv:       document.getElementById("camera-buttons-div"),
-    cam1aButton:            document.getElementById("cam-1a-button"),
-    cam1bButton:            document.getElementById("cam-1b-button"),
-    cam1cButton:            document.getElementById("cam-1c-button"),
-    cam2aButton:            document.getElementById("cam-2a-button"),
-    cam2bButton:            document.getElementById("cam-2b-button"),
-    cam3Button:             document.getElementById("cam-3-button"),
-    cam4aButton:            document.getElementById("cam-4a-button"),
-    cam4bButton:            document.getElementById("cam-4b-button"),
-    cam5Button:             document.getElementById("cam-5-button"),
-    cam6Button:             document.getElementById("cam-6-button"),
-    cam7Button:             document.getElementById("cam-7-button"),
-    cameraBackground:       document.getElementById("camera-background")
+    cameraUI:                   document.getElementById("camera-ui"),
+    cameraMap:                  document.getElementById("camera-map"),
+    recordingLight:             document.getElementById("recording-light"),
+    cameraOutline:              document.getElementById("camera-outline"),
+    cameraButtonsDiv:           document.getElementById("camera-buttons-div"),
+    cam1aButton:                document.getElementById("cam-1a-button"),
+    cam1bButton:                document.getElementById("cam-1b-button"),
+    cam1cButton:                document.getElementById("cam-1c-button"),
+    cam2aButton:                document.getElementById("cam-2a-button"),
+    cam2bButton:                document.getElementById("cam-2b-button"),
+    cam3Button:                 document.getElementById("cam-3-button"),
+    cam4aButton:                document.getElementById("cam-4a-button"),
+    cam4bButton:                document.getElementById("cam-4b-button"),
+    cam5Button:                 document.getElementById("cam-5-button"),
+    cam6Button:                 document.getElementById("cam-6-button"),
+    cam7Button:                 document.getElementById("cam-7-button"),
+    cameraBackground:           document.getElementById("camera-background")
 }
 
 //  ====================================================================================
@@ -447,6 +449,7 @@ function transitionIntoGame(){
     setTimeout(() => fadeFromBlack(7), 9000);
 
     setTimeout(startGameClock, 9000);
+    setTimeout(startGameLoop, 9000);
 
 };
 
@@ -485,7 +488,7 @@ function showNightText(){
 
     updateCurrentNightText();
 
-    elements.nightText.style.opacity = 1;
+    elements.fadeBlackScreenNightText.style.opacity = 1;
     
 };
 
@@ -493,7 +496,7 @@ function hideNightText(){
 
     console.log("Hiding Night Text");
         
-    elements.nightText.style.opacity = 0;
+    elements.fadeBlackScreenNightText.style.opacity = 0;
 };
 
 function showTimeText(){
@@ -506,7 +509,9 @@ function hideTimeText(){
 
 function updateCurrentNightText(){
 
-    elements.nightText.src = assets.nightText[gameState.currentNight];
+    elements.fadeBlackScreenNightText.src = assets.nightText[gameState.currentNight];
+
+    elements.gameNightText.src = assets.nightText[gameState.currentNight];
 
 };
 
@@ -531,7 +536,7 @@ function advanceHour(){
         gameState.currentHour += 1;
     }
 
-    elements.timeText.src = assets.timeText[gameState.currentHour];
+    elements.gameTimeText.src = assets.timeText[gameState.currentHour];
 
     console.log("Advance Hour", gameState.currentHour); //TODO Debug
 
@@ -562,7 +567,27 @@ function stopGameClock(){
 };
 
 
+function startGameLoop(){
 
+    //This starts the loop of the gameLoop function
+    requestAnimationFrame(gameLoop); 
+};
+
+
+function gameLoop(){
+
+    if (!gameState.gameRunning){
+        return;
+    }
+
+    console.log("Game Loop")
+
+    // TODO All animatronic logic goes here
+
+
+    requestAnimationFrame(gameLoop);
+
+};
 
 
 

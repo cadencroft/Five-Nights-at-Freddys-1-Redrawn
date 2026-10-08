@@ -124,8 +124,10 @@ I am a Software Engineering and Data Science Mathematics student at IUP, and I a
 - Renamed the `startGame` function to `transitionIntoGame` since that function contains the code for the transition rather than actually starting the game.
 - Added function `advanceHour` that increments the `currentHour` gameState and the `timeText` sprite to the next hour
 - "i" keybind temporarily calls the `advanceHour` function for testing purposes.
-- Added `startGameClock` and `stopGameClock` functions to begin and end the interval function which controls the game clock. The purpose of these functions is to control when `advanceHour` is called. The game clock starts as soon as the screen fades from black, and is stopped when the hour advances to 6.  
-
+- Added `startGameClock` and `stopGameClock` functions to begin and end the interval function which controls the game clock. The purpose of these functions is to control when `advanceHour` is called. The game clock starts as soon as the screen fades in from black, and is stopped when the hour advances to 6.  
+- Renamed multiple html id related to the night text to be more specific in order to avoid confusion due to the night text appearing in multiple places.
+- Created the main `gameLoop` function that activates as soon as the screen fades in from black. It is stopped once the variable `gameRunning` is false. The `gameLoop` function uses the `requestAnimationFrame` function to ensure it is in sync with the browser.
+- Added the "Night X" text to the UI in the game. It's source image updates in `updateCurrentNightText`, along with the "Night X" in the fade black screen.
 
 
 ## **Problems and Solutions**
