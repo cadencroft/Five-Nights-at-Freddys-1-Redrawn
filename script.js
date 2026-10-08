@@ -917,6 +917,10 @@ function handleKeyboardInput(event){
         toggleTestChicaAppearance();
     }
 
+    else if (event.key.toLowerCase() == "i"){
+        advanceHour();
+    }
+
     else if (event.key.toLowerCase() == "r"){
         location.reload();
     }

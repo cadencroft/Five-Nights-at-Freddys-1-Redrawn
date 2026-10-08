@@ -123,6 +123,7 @@ I am a Software Engineering and Data Science Mathematics student at IUP, and I a
 - Modified the timeText file paths in the `assets` object to correspond to their respective hour.
 - Renamed the `startGame` function to `transitionIntoGame` since that function contains the code for the transition rather than actually starting the game.
 - Added function `advanceHour` that increments the `currentHour` gameState and the `timeText` sprite to the next hour
+- "i" keybind temporarily calls the `advanceHour` function for testing purposes.
 
 
 
