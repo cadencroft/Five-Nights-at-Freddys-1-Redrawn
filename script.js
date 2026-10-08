@@ -446,6 +446,8 @@ function transitionIntoGame(){
     console.log("6");
     setTimeout(() => fadeFromBlack(7), 9000);
 
+    setTimeout(startGameClock, 9000);
+
 };
 
 function initializeNight(){
@@ -524,19 +526,41 @@ function advanceHour(){
     if (gameState.currentHour == 12){
         gameState.currentHour = 1;
     }
+    
     else {
         gameState.currentHour += 1;
     }
-    
+
     elements.timeText.src = assets.timeText[gameState.currentHour];
 
+    console.log("Advance Hour", gameState.currentHour); //TODO Debug
+
+        if (gameState.currentHour == 6){
+
+            console.log("MADE IT TO 6AM!!!"); //TODO Debug
+            stopGameClock();
+        }
+
 };
 
-function beginGameLoop(){
+function startGameClock(){
 
+    const hourLengthInSeconds = 3;
 
+    gameClockInterval = setInterval(advanceHour, hourLengthInSeconds * 1000);
+
+    gameState.gameRunning = true;
 
 };
+
+function stopGameClock(){
+
+    clearInterval(gameClockInterval);
+
+    gameState.gameRunning = false;
+
+};
+
 
 
 

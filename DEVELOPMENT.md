@@ -124,6 +124,7 @@ I am a Software Engineering and Data Science Mathematics student at IUP, and I a
 - Renamed the `startGame` function to `transitionIntoGame` since that function contains the code for the transition rather than actually starting the game.
 - Added function `advanceHour` that increments the `currentHour` gameState and the `timeText` sprite to the next hour
 - "i" keybind temporarily calls the `advanceHour` function for testing purposes.
+- Added `startGameClock` and `stopGameClock` functions to begin and end the interval function which controls the game clock. The purpose of these functions is to control when `advanceHour` is called. The game clock starts as soon as the screen fades from black, and is stopped when the hour advances to 6.  
 
 
 
